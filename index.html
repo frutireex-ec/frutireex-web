@@ -431,8 +431,8 @@ button{font:inherit;color:inherit}
 .loc-wall{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:8px;max-width:540px;margin-top:6px}
 .loc-wall .pola:nth-child(1){--r:-3deg}.loc-wall .pola:nth-child(2){--r:2deg}.loc-wall .pola:nth-child(3){--r:-1deg}
 .loc-wall .pola:nth-child(4){--r:2.5deg}.loc-wall .pola:nth-child(5){--r:-2deg}.loc-wall .pola:nth-child(6){--r:1.5deg}
-.redes-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
-.net{position:relative;border-radius:28px;padding:26px;display:grid;gap:12px;align-content:start;min-width:0;text-align:left;border:0;cursor:pointer;transition:transform .3s var(--ease)}
+.redes-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
+.net{position:relative;border-radius:28px;padding:26px;display:grid;gap:12px;align-content:start;min-width:0;text-align:left;border:0;cursor:pointer;text-decoration:none;transition:transform .3s var(--ease)}
 .net:hover{transform:translateY(-4px)}
 .net .net-top{display:flex;align-items:center;gap:12px}
 .net .net-top .ico{width:30px;height:30px}
@@ -445,6 +445,10 @@ button{font:inherit;color:inherit}
 .n-ig{background:var(--paper);color:var(--green-deep)}
 .n-ig .disp{color:var(--pink-ink)}
 .n-fb{background:var(--lime);color:var(--green-deep)}
+.n-yt{background:var(--pink);color:var(--green-deep)}
+.n-yt .disp{color:var(--red)}
+.net:focus-visible{outline:3px solid var(--flame);outline-offset:3px}
+@media (max-width:1180px) and (min-width:981px){.redes-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:980px){.fam-grid{grid-template-columns:1fr}.redes-row{grid-template-columns:1fr}}
 @media (max-width:560px){.pu-top{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}.pu h3{font-size:1.45rem}}
 
@@ -1065,6 +1069,36 @@ body{overflow-x:clip}
 @media (max-width:1240px){.head-row > .pill-lime{display:none}.nav a{padding:11px 10px}}
 .cc-top b{margin-right:64px}
 
+/* Lo último en redes (V13): se llena solo desde las cuentas oficiales */
+.feed{background:var(--cream)}
+.feed-head{max-width:62ch;margin-bottom:clamp(22px,3vw,34px)}
+.feed-head .lede{margin-top:10px}
+.feed-yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:22px}
+.yt-v{display:grid;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;line-height:1.3}
+.yt-v img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:18px;border:2px solid var(--green-deep);background:var(--cream-2)}
+.yt-v:hover img{transform:translateY(-3px);transition:transform .25s var(--ease)}
+.feed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start}
+.feed-card{background:var(--paper);border-radius:var(--r);border:2px solid var(--cream-2);overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.feed-card header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 18px;border-top:7px solid var(--green-deep)}
+.feed-card header b{font-size:1.05rem;color:var(--ink)}
+.feed-card header a{color:var(--green);font-weight:700;font-size:14.5px;text-decoration:none}
+.feed-card header a:hover{text-decoration:underline}
+.f-ig header{border-top-color:var(--pink-ink)}.f-fb header{border-top-color:var(--lime)}.f-yt header{border-top-color:var(--flame)}
+.feed-box{min-height:420px;display:grid;place-items:center;background:var(--cream-2)}
+.feed-box.con-fotos{min-height:0;place-items:stretch}
+.feed-frame{display:block;width:100%;height:560px;border:0;background:#fff}
+.feed-frame.yt{height:auto;aspect-ratio:16/9}
+.f-yt .feed-box{min-height:0}
+.feed-box .tiktok-embed{margin:0 !important;width:100%}
+.feed-ir{font-weight:700;color:var(--green);padding:28px 20px;text-align:center;text-decoration:none}
+.feed-ir:hover{text-decoration:underline}
+.ig-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}
+.ig-grid a{display:block;aspect-ratio:1;overflow:hidden;background:var(--cream)}
+.ig-grid img{width:100%;height:100%;object-fit:cover;display:block}
+.g-resenas{display:contents}
+.g-est{color:#E8A400;letter-spacing:2px;font-size:15px}
+.foot .visitas{font-weight:600}
+
 </style>
 </head>
 <body>
@@ -1103,7 +1137,7 @@ body{overflow-x:clip}
       <a href="#clientes">Clientes</a>
     </nav>
     <a class="pill pill-reg reg" href="https://app.frutireex.com">Ingresar a la app</a>
-    <button type="button" class="pill pill-lime" data-ov="instagram">Síguenos</button>
+    <a class="pill pill-lime" href="#redes">Síguenos</a>
     <button type="button" class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
       <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -1111,7 +1145,7 @@ body{overflow-x:clip}
   <nav class="mnav" id="mnav" aria-label="Menú móvil" hidden>
     <a href="#historia">Historia</a><a href="#tio-rex">Tío Rex</a><a href="#menu">Menú</a><a href="#toppings">Toppings</a><a href="#local">Nuestra casa</a><a href="#familia">Familia Reex</a><a href="#visitanos">Visítanos</a><a href="#clientes">Clientes</a>
     <a class="pill pill-lime" href="https://app.frutireex.com">Ingresar a la app</a>
-    <button type="button" class="pill pill-green" data-ov="instagram">Síguenos en redes</button>
+    <a class="pill pill-green" href="#redes">Síguenos en redes</a>
   </nav>
 </header>
 
@@ -1130,7 +1164,7 @@ body{overflow-x:clip}
           <a class="pill pill-line-cream" href="#historia">Cómo empezó todo</a>
         </div>
         <ul class="proof">
-          <li><b>4,9 ★</b><span>318 opiniones en Google</span></li>
+          <li><b data-g="nota">4,9 ★</b><span data-g="opiniones">330 opiniones en Google</span></li>
           <li><b>Desde 2024</b><span>de la mesita al local</span></li>
           <li><b>13:30–19:30</b><span>todos los días</span></li>
         </ul>
@@ -1154,21 +1188,26 @@ body{overflow-x:clip}
         <p>Videos, fotos y todo lo nuevo de Fruti Reex.</p>
       </div>
       <div class="redes-row">
-        <button type="button" class="net n-tt" data-ov="tiktok">
+        <a class="net n-tt" href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">
           <span class="net-top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a3.7 3.7 0 1 1-3.7-3.7M14 4c.3 2.4 1.9 4 4.5 4.2"/></svg><span><b>TikTok</b><br><small>@fruti_reex</small></span></span>
           <span class="disp">Mira cómo se arma</span>
-          <span class="go">Ver lo que publicamos →</span>
-        </button>
-        <button type="button" class="net n-ig" data-ov="instagram">
+          <span class="go">Abrir TikTok ↗</span>
+        </a>
+        <a class="net n-ig" href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">
           <span class="net-top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg><span><b>Instagram</b><br><small>@frutireex</small></span></span>
           <span class="disp">Fresas con chocolate</span>
-          <span class="go">Ver lo que publicamos →</span>
-        </button>
-        <button type="button" class="net n-fb" data-ov="facebook">
+          <span class="go">Abrir Instagram ↗</span>
+        </a>
+        <a class="net n-fb" href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">
           <span class="net-top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-8h2.6l.4-3H14V8.2c0-.9.3-1.5 1.6-1.5H17V4.1C16.7 4 15.9 4 15 4c-2.3 0-3.8 1.4-3.8 3.9V10H8.6v3h2.6v8"/></svg><span><b>Facebook</b><br><small>Frutireex</small></span></span>
           <span class="disp">Aquí también estamos</span>
-          <span class="go">Ver lo que publicamos →</span>
-        </button>
+          <span class="go">Abrir Facebook ↗</span>
+        </a>
+        <a class="net n-yt" href="https://www.youtube.com/@Fruti_reex" target="_blank" rel="noopener">
+          <span class="net-top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="5.5" width="18.4" height="13" rx="4"/><path d="M10.3 9.3v5.4l4.6-2.7z" fill="currentColor"/></svg><span><b>YouTube</b><br><small>@Fruti_reex</small></span></span>
+          <span class="disp">Videos completos</span>
+          <span class="go">Abrir YouTube ↗</span>
+        </a>
       </div>
     </div>
   </section>
@@ -1522,7 +1561,7 @@ body{overflow-x:clip}
         <h2 class="h2 disp" id="cli-title" style="color:var(--green)">Ellos ya se dieron su malcriadita</h2>
         <p class="lede">Gracias por venir. Comparte tu malcriada, etiquétanos en <b style="color:var(--green)">@frutireex</b> y aparece aquí.</p>
       </div>
-      <div class="cli-ctas"><a class="pill pill-line" href="https://maps.app.goo.gl/Wyzb5RpWhtaxirkc8" target="_blank" rel="noopener">Lee las opiniones en Google ↗</a><button type="button" class="pill pill-green" data-ov="instagram">Seguir a @frutireex</button></div>
+      <div class="cli-ctas"><a class="pill pill-line" href="https://maps.app.goo.gl/Wyzb5RpWhtaxirkc8" target="_blank" rel="noopener">Lee las opiniones en Google ↗</a><a class="pill pill-green" href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Seguir a @frutireex ↗</a></div>
     </div>
     <div class="marquee" aria-label="Galería de clientes"><div class="mq-track" id="mq1"></div></div>
     <div class="marquee rev" aria-hidden="true"><div class="mq-track" id="mq2"></div></div>
@@ -1533,14 +1572,31 @@ body{overflow-x:clip}
       </figure>
       <div class="wall2">
         <div class="rating">
-          <b class="disp">4,9</b>
+          <b class="disp" data-g="nota-sola">4,9</b>
           <span class="stars5" aria-hidden="true">★★★★★</span>
-          <span>318 opiniones en Google</span>
+          <span data-g="opiniones">330 opiniones en Google</span>
         </div>
+        <div class="g-resenas" id="gResenas" hidden></div>
         <figure class="bubble"><q>Fue una linda experiencia, el lugar es muy bonito y tranquilo, la energía de todos es muy linda siempre están con una sonrisa y te atiende de buena forma y su producto es muy bueno y rico 😋. Me encantó 🫶</q><figcaption class="who"><span class="av">A</span><span><b style="color:var(--ink)">Ayleen</b><br>★★★★★ en Google</span></figcaption></figure>
         <figure class="bubble pinkb"><q>Gracias, fuimos del sur y nos atendieron muy lindo. Nos encantó la atención ❤️🦖</q><figcaption class="who"><span class="av">N</span><span><b style="color:var(--ink)">Noah detalles con amor</b><br>Comentario en redes</span></figcaption></figure>
         <figure class="bubble chat"><q>Pero qué buenazooo amigo Reex 😋</q><figcaption class="who"><span class="av">💬</span><span><b style="color:var(--ink)">Mensaje de un cliente</b><br>WhatsApp</span></figcaption></figure>
-        <div class="bubble inv limey"><span class="kind">Tu turno</span><p>Tómale una foto a tu malcriada y etiquétanos en @frutireex. Las mejores aparecen aquí.</p><button type="button" class="pill pill-green" data-ov="instagram">Ir a Instagram</button></div>
+        <div class="bubble inv limey"><span class="kind">Tu turno</span><p>Tómale una foto a tu malcriada y etiquétanos en @frutireex. Las mejores aparecen aquí.</p><a class="pill pill-green" href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Ir a Instagram ↗</a></div>
+      </div>
+    </div>
+  </section>
+    <section class="sec feed" id="ultimo" aria-labelledby="feed-title">
+    <div class="wrap">
+      <div class="feed-head">
+        <p class="eyebrow">Recién publicado</p>
+        <h2 class="h2 disp" id="feed-title">Lo último en nuestras redes</h2>
+        <p class="lede">Las fotos y los videos más nuevos de Fruti Reex. Aparecen aquí solos cada vez que publicamos.</p>
+      </div>
+      <div class="feed-yt" id="feedYt" hidden></div>
+      <div class="feed-grid">
+        <article class="feed-card f-ig"><header><b>Instagram</b><a href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">@frutireex ↗</a></header><div class="feed-box" id="feed-instagram"><a class="feed-ir" href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Ver las fotos en Instagram ↗</a></div></article>
+        <article class="feed-card f-tt"><header><b>TikTok</b><a href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">@fruti_reex ↗</a></header><div class="feed-box" id="feed-tiktok"><a class="feed-ir" href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">Ver los videos en TikTok ↗</a></div></article>
+        <article class="feed-card f-fb"><header><b>Facebook</b><a href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">Frutireex ↗</a></header><div class="feed-box" id="feed-facebook"><a class="feed-ir" href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">Ver la página en Facebook ↗</a></div></article>
+        <article class="feed-card f-yt"><header><b>YouTube</b><a href="https://www.youtube.com/@Fruti_reex" target="_blank" rel="noopener">@Fruti_reex ↗</a></header><div class="feed-box" id="feed-youtube"><a class="feed-ir" href="https://www.youtube.com/@Fruti_reex" target="_blank" rel="noopener">Ver el canal en YouTube ↗</a></div></article>
       </div>
     </div>
   </section>
@@ -1583,16 +1639,17 @@ body{overflow-x:clip}
     <span class="script">¡sin miedo al éxito!</span>
     <nav class="foot-links" aria-label="Pie de página">
       <a href="#historia">Historia</a><a href="#tio-rex">Tío Rex</a><a href="#menu">Menú</a><a href="#toppings">Toppings</a><a href="#local">Nuestra casa</a><a href="#familia">Familia</a><a href="#visitanos">Visítanos</a><a href="#clientes">Clientes</a>
-      <a href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@Fruti_reex" target="_blank" rel="noopener">YouTube</a>
     </nav>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Fruti Reex · Guayllabamba, Quito, Ecuador</span>
       <span>Todos los días de 13:30 a 19:30 · 096 069 7442</span>
+      <span class="visitas" id="visitas" hidden></span>
     </div>
   </div>
 </footer>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FoodEstablishment", "name": "Fruti Reex", "url": "https://www.frutireex.com/", "image": "https://www.frutireex.com/assets/og.jpg", "alternateName": "Frutireex - Fresas con chocolate", "servesCuisine": "Postres de fruta con chocolate", "slogan": "Una malcriadita para el alma", "telephone": "+593 96 069 7442", "openingHours": "Mo-Su 13:30-19:30", "geo": {"@type": "GeoCoordinates", "latitude": -0.0648768, "longitude": -78.3595047}, "hasMap": "https://maps.app.goo.gl/Wyzb5RpWhtaxirkc8", "address": {"@type": "PostalAddress", "addressLocality": "Guayllabamba", "addressRegion": "Pichincha", "addressCountry": "EC"}, "sameAs": ["https://www.instagram.com/frutireex/", "https://www.tiktok.com/@fruti_reex", "https://www.facebook.com/share/18D3yjHcU3/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FoodEstablishment", "name": "Fruti Reex", "url": "https://www.frutireex.com/", "image": "https://www.frutireex.com/assets/og.jpg", "alternateName": "Frutireex - Fresas con chocolate", "servesCuisine": "Postres de fruta con chocolate", "slogan": "Una malcriadita para el alma", "telephone": "+593 96 069 7442", "openingHours": "Mo-Su 13:30-19:30", "geo": {"@type": "GeoCoordinates", "latitude": -0.0648768, "longitude": -78.3595047}, "hasMap": "https://maps.app.goo.gl/Wyzb5RpWhtaxirkc8", "address": {"@type": "PostalAddress", "addressLocality": "Guayllabamba", "addressRegion": "Pichincha", "addressCountry": "EC"}, "sameAs": ["https://www.instagram.com/frutireex/", "https://www.tiktok.com/@fruti_reex", "https://www.facebook.com/share/18D3yjHcU3/", "https://www.youtube.com/@Fruti_reex"]}</script>
 <script src="assets/motion.js"></script>
 <script>
 (function(){
@@ -1940,7 +1997,7 @@ body{overflow-x:clip}
   })();
 
   /* ---------- Redes: ventana encima de la página ---------- */
-  const HANDLES = {tiktok:"https://www.tiktok.com/@fruti_reex", instagram:"https://www.instagram.com/frutireex/", facebook:"https://www.facebook.com/share/18D3yjHcU3/"};
+  const HANDLES = {tiktok:"https://www.tiktok.com/@fruti_reex", instagram:"https://www.instagram.com/frutireex/", facebook:"https://www.facebook.com/share/18D3yjHcU3/", youtube:"https://www.youtube.com/@Fruti_reex"};
   const FIT = ["godzilla","reexita","reex-big","split-big","tropical-big","mix-big","exotica-big","malcriadas"];
   const gal = list => '<div class="ov-gal">' + list.map(n => '<figure' + (FIT.indexOf(n) > -1 ? ' class="fit"' : '') + '><img src="' + ASSET(n) + '" alt="' + PH[n] + '" loading="lazy"><figcaption>' + PH[n] + '</figcaption></figure>').join("") + '</div>';
   const li = arr => '<ul class="ov-list">' + arr.map(x => '<li>' + x + '</li>').join("") + '</ul>';
@@ -2006,6 +2063,96 @@ body{overflow-x:clip}
   }
   document.addEventListener("click", e => { const b = e.target.closest("[data-liveload]"); if (b) loadLive(b.dataset.liveload); });
 
+
+  /* ---------- Lo último en redes, reseñas de Google y contador de visitas ----------
+     data/sitio.json, data/youtube.json y data/instagram.json los refresca cada madrugada
+     una tarea automática de GitHub (.github/workflows/actualizar.yml → scripts/actualizar.py). */
+  (function redes(){
+    const YT_SUBIDAS = "UUuqD6uF-1K8UJkHpCp_xq5A";            // lista "subidas" del canal @Fruti_reex
+    const FB_PAGINA = "https://www.facebook.com/p/Frutireex-61564519319780/";
+    const escH = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+    const corto = (s, n) => { s = String(s || "").replace(/\s+/g, " ").trim(); return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : s; };
+    const leer = u => fetch(u, {cache: "no-cache"}).then(r => r.ok ? r.json() : null).catch(() => null);
+    const t0 = performance.now();
+
+    // reseñas de Google: el número y las opiniones más recientes
+    leer("data/sitio.json").then(d => {
+      if (!d) return;
+      const g = d.google || {};
+      const poner = () => {
+        if (g.opiniones > 0) document.querySelectorAll('[data-g="opiniones"]').forEach(el => { el.textContent = String(Math.round(g.opiniones)).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " opiniones en Google"; });
+        if (g.nota > 0) {
+          const n = Number(g.nota).toFixed(1).replace(".", ",");
+          document.querySelectorAll('[data-g="nota"]').forEach(el => { el.textContent = n + " ★"; });
+          document.querySelectorAll('[data-g="nota-sola"]').forEach(el => { el.textContent = n; });
+        }
+      };
+      setTimeout(poner, Math.max(0, 2300 - (performance.now() - t0)));   // después de que la portada cuenta las cifras
+      resenas(g.resenas || []);
+      contador(d.contador || {});
+    });
+
+    function resenas(lista){
+      const box = document.getElementById("gResenas");
+      if (!box || !lista.length) return;
+      box.innerHTML = lista.filter(r => r && r.texto).slice(0, 3).map(r =>
+        '<figure class="bubble g-res"><span class="g-est" role="img" aria-label="' + (Math.round(r.nota) || 5) + ' de 5 estrellas">' + "★".repeat(Math.max(1, Math.min(5, Math.round(r.nota) || 5))) + '</span>' +
+        '<q>' + escH(corto(r.texto, 230)) + '</q><figcaption class="who"><span class="av">' + escH((r.autor || "?").trim().charAt(0).toUpperCase()) + '</span>' +
+        '<span><b style="color:var(--ink)">' + escH(r.autor || "Cliente") + '</b><br>Opinión en Google' + (r.cuando ? " · " + escH(r.cuando) : "") + '</span></figcaption></figure>').join("");
+      box.hidden = !box.innerHTML;
+    }
+
+    // contador de visitas (GoatCounter): solo cuando está configurado en data/sitio.json
+    function contador(c){
+      if (!REAL_HOST || !c.goatcounter || !/^[a-z0-9-]+$/.test(c.goatcounter)) return;
+      const base = "https://" + c.goatcounter + ".goatcounter.com";
+      const sc = document.createElement("script"); sc.async = true; sc.src = "https://gc.zgo.at/count.js"; sc.setAttribute("data-goatcounter", base + "/count");
+      document.body.appendChild(sc);
+      if (!c.mostrar) return;
+      fetch(base + "/counter/TOTAL.json").then(r => r.ok ? r.json() : null).then(j => {
+        const n = j && (j.count || j.count_unique); if (!n) return;
+        const el = document.getElementById("visitas"); if (!el) return;
+        el.textContent = String(n).replace(/[,   ]/g, ".") + " visitas a la página"; el.hidden = false;
+      }).catch(() => {});
+    }
+
+    // lo último en redes: se carga cuando la sección se acerca a la pantalla
+    const sec = document.getElementById("ultimo"); if (!sec) return;
+    let listo = false;
+    function cargar(){
+      if (listo) return; listo = true;
+      leer("data/youtube.json").then(y => {
+        const vs = ((y && y.videos) || []).filter(v => /^[A-Za-z0-9_-]{6,20}$/.test(v.id)).slice(0, 4);
+        const box = document.getElementById("feedYt"); if (!box || !vs.length) return;
+        box.innerHTML = vs.map(v => '<a class="yt-v" href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/' + v.id + '/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span>' + escH(corto(v.titulo, 80)) + '</span></a>').join("");
+        box.hidden = false;
+      });
+      leer("data/instagram.json").then(ig => {
+        const ps = ((ig && ig.posts) || []).filter(p => p.img && /^https:\/\//.test(p.img) && /^https:\/\/(www\.)?instagram\.com\//.test(p.url || "")).slice(0, 9);
+        const box = document.getElementById("feed-instagram"); if (!box) return;
+        if (ps.length) {
+          box.classList.add("con-fotos");
+          box.innerHTML = '<div class="ig-grid">' + ps.map(p => '<a href="' + escH(p.url) + '" target="_blank" rel="noopener"><img src="' + escH(p.img) + '" alt="' + escH(corto(p.texto || "Publicación de Fruti Reex en Instagram", 120)) + '" loading="lazy"></a>').join("") + '</div>';
+        } else if (REAL_HOST) {
+          box.innerHTML = '<iframe class="feed-frame" title="Instagram de Fruti Reex" src="https://www.instagram.com/frutireex/embed/" loading="lazy" scrolling="no"></iframe>';
+        }
+      });
+      if (!REAL_HOST) return;   // en vistas previas no se cargan las redes de terceros
+      const tt = document.getElementById("feed-tiktok");
+      if (tt) {
+        tt.innerHTML = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fruti_reex" data-unique-id="fruti_reex" data-embed-type="creator" style="max-width:780px;min-width:288px"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@fruti_reex?refer=creator_embed">@fruti_reex</a></section></blockquote>';
+        const sc = document.createElement("script"); sc.async = true; sc.src = "https://www.tiktok.com/embed.js"; document.body.appendChild(sc);
+      }
+      const fb = document.getElementById("feed-facebook");
+      if (fb) fb.innerHTML = '<iframe class="feed-frame" title="Facebook de Fruti Reex" src="https://www.facebook.com/plugins/page.php?href=' + encodeURIComponent(FB_PAGINA) + '&tabs=timeline&width=500&height=560&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" loading="lazy" allow="encrypted-media"></iframe>';
+      const yt = document.getElementById("feed-youtube");
+      if (yt) yt.innerHTML = '<iframe class="feed-frame yt" title="Videos de Fruti Reex en YouTube" src="https://www.youtube-nocookie.com/embed/videoseries?list=' + YT_SUBIDAS + '" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    }
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); cargar(); } }, {rootMargin: "700px 0px"});
+      io.observe(sec);
+    } else cargar();
+  })();
 
 
   /* ---------- Planificador de ruta (V5): menú desplegable ---------- */
@@ -2144,9 +2291,9 @@ body{overflow-x:clip}
     setTimeout(() => root.classList.remove("mo"), 1900);
     const pb = document.querySelectorAll(".proof b"), ps = document.querySelectorAll(".proof span");
     /* las cifras salen de la página (MySQL puede cambiarlas): se cuentan hasta el valor que haya */
-    const cal = pb[0] ? parseFloat(pb[0].textContent.replace(",", ".")) : NaN, op = ps[0] ? parseInt(ps[0].textContent, 10) : NaN;
+    const cal = pb[0] ? parseFloat(pb[0].textContent.replace(",", ".")) : NaN, op = ps[0] ? parseInt(ps[0].textContent.replace(/\./g, ""), 10) : NaN;
     if (isFinite(cal) && /★/.test(pb[0].textContent)) setTimeout(() => tick(pb[0], 0, cal, v => v.toFixed(1).replace(".", ",") + " ★", 1.4), 450);
-    if (isFinite(op) && /opiniones/.test(ps[0].textContent)) setTimeout(() => tick(ps[0], 0, op, v => Math.round(v) + " opiniones en Google", 1.6), 450);
+    if (isFinite(op) && /opiniones/.test(ps[0].textContent)) setTimeout(() => tick(ps[0], 0, op, v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " opiniones en Google", 1.6), 450);
     const bb = document.querySelector(".hero-arch .badge b"); if (bb) setTimeout(() => tick(bb, 0, 7, v => String(Math.round(v)), 1), 950);
     /* la portada se queda atrás con un leve paralaje mientras bajas */
     const hero = document.getElementById("inicio"), arch = document.querySelector(".hero-arch");
