@@ -8,7 +8,7 @@
 Si un paso falla o no tiene su clave, se deja lo que había: la página nunca se queda vacía.
 Solo usa la biblioteca estándar de Python.
 """
-import datetime, json, os, re, sys, urllib.parse, urllib.request
+import datetime, json, os, re, sys, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,7 +82,23 @@ def youtube(sitio):
     canal = (sitio.get("youtube") or {}).get("canal")
     if not canal:
         return
-    xml = pedir("https://www.youtube.com/feeds/videos.xml?channel_id=" + urllib.parse.quote(canal))
+    # el feed del canal a veces responde 404 desde los servidores de GitHub: se prueba también la lista de subidas
+    fuentes = ["https://www.youtube.com/feeds/videos.xml?channel_id=" + urllib.parse.quote(canal)]
+    if canal.startswith("UC"):
+        fuentes.append("https://www.youtube.com/feeds/videos.xml?playlist_id=UU" + urllib.parse.quote(canal[2:]))
+    xml, ultimo_error = None, None
+    for url in fuentes:
+        for intento in range(2):
+            try:
+                xml = pedir(url)
+                break
+            except Exception as e:  # noqa: BLE001
+                ultimo_error = e
+                time.sleep(3)
+        if xml:
+            break
+    if not xml:
+        raise ultimo_error
     ns = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015"}
     videos = []
     for e in ET.fromstring(xml).findall("a:entry", ns):
