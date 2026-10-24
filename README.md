@@ -17,26 +17,26 @@ Es una página estática (HTML, CSS, JavaScript y la carpeta `assets` con fotos,
 | `CNAME` | Dominio de GitHub Pages (www.frutireex.com) |
 | `.nojekyll` | Publicar los archivos tal cual |
 | `robots.txt`, `sitemap.xml` | Para Google |
-| `data/` | Reseñas de Google, videos de YouTube y fotos de Instagram (los actualiza la tarea diaria) |
+| `data/sitio.json` | Nota, número y reseñas recientes de Google (los actualiza la tarea diaria) |
 | `scripts/actualizar.py`, `.github/workflows/actualizar.yml` | La tarea diaria |
 
 Cada cambio que se sube a la rama `main` se publica solo en 1–2 minutos.
 
 ## Actualización diaria automática
-Cada madrugada (05:17, hora de Ecuador) GitHub corre la tarea **"Actualización diaria de la página"**. No hace falta tener ninguna computadora encendida.
+Cada madrugada (05:17, hora de Ecuador) GitHub corre la tarea **"Actualización diaria de la página"**. No hace falta tener ninguna computadora encendida. Trae de Google la nota, el número de opiniones y las **reseñas más recientes**, y las pone en «Nuestros clientes».
 
-| Qué se actualiza | Qué necesita |
-|---|---|
-| Videos nuevos de YouTube (@Fruti_reex) | Nada: ya funciona |
-| TikTok y Facebook en «Lo último en nuestras redes» | Nada: se cargan solos desde las cuentas oficiales |
-| Nota y número de opiniones de Google, y las reseñas recientes | El secreto `GOOGLE_PLACES_KEY` |
-| Fotos de Instagram en cuadrícula | El secreto `BEHOLD_FEED` (si no está, se muestra la cuenta de Instagram) |
-| Contador de visitas | Poner el código de GoatCounter en `data/sitio.json` → `contador.goatcounter` (y `"mostrar": true` para que se vea en el pie de página) |
+Necesita **uno** de estos secretos:
+
+| Secreto | Qué da | Cómo se consigue |
+|---|---|---|
+| `SERPAPI_KEY` (recomendado) | Nota, número de opiniones y las reseñas **más nuevas** primero | Cuenta gratis en https://serpapi.com (100 consultas al mes; la tarea usa unas 30). En **Dashboard** → **Your Private API Key** |
+| `GOOGLE_PLACES_KEY` | Nota y número exactos; las reseñas que da Google son las "más relevantes", no siempre las más nuevas | https://console.cloud.google.com → proyecto → activar **Places API (New)** → **Credenciales** → clave de API |
 
 **Cómo se pone un secreto:** en GitHub, este repositorio → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**. Nombre: el de la tabla. Valor: la clave.
 
-**Clave de Google (`GOOGLE_PLACES_KEY`):** en https://console.cloud.google.com crea un proyecto, activa **Places API (New)**, y en **Credenciales** crea una **clave de API**. Restríngela a "Places API (New)". Con una consulta al día queda dentro del uso gratuito de Google.
-
-**Instagram (`BEHOLD_FEED`):** crea una cuenta gratis en https://behold.so, conecta el Instagram @frutireex, crea un feed "JSON" y copia su enlace (https://feeds.behold.so/...).
+Para no mostrar la reseña de alguien (por ejemplo, del equipo), agrega su nombre en `data/sitio.json` → `google.excluir`.
 
 Para probar la tarea sin esperar a la madrugada: pestaña **Actions** → "Actualización diaria de la página" → **Run workflow**.
+
+## Contador de visitas
+El pie de página muestra cuántas veces se ha abierto la página (una por persona cada vez que entra; recargar no suma). Usa el contador público y gratuito https://abacus.jasoncameron.dev (clave `frutireex-com/visitas`). Para ver el número en cualquier momento: https://abacus.jasoncameron.dev/get/frutireex-com/visitas

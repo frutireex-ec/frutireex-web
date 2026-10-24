@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 """Actualización diaria de www.frutireex.com. La corre GitHub Actions cada madrugada (.github/workflows/actualizar.yml).
 
-- Reseñas de Google (nota, número de opiniones y las opiniones recientes): necesita el secreto GOOGLE_PLACES_KEY.
-- Videos nuevos del canal de YouTube: no necesita claves (lista pública del canal).
-- Fotos de Instagram: necesita el secreto BEHOLD_FEED (enlace o código del feed de behold.so).
+Trae de Google la nota, el número de opiniones y las reseñas MÁS RECIENTES del local, y las deja en
+data/sitio.json (y las cifras también escritas en index.html).
 
-Si un paso falla o no tiene su clave, se deja lo que había: la página nunca se queda vacía.
+Necesita UNO de estos secretos del repositorio:
+- SERPAPI_KEY (recomendado): serpapi.com, plan gratis de 100 consultas al mes. Da las reseñas ordenadas
+  de la más nueva a la más vieja.
+- GOOGLE_PLACES_KEY: clave de Google Cloud (Places API New). Da la nota y el número exactos, pero las
+  reseñas que entrega Google son las "más relevantes", no siempre las más nuevas.
+
+Si no hay clave o algo falla, se deja lo que había: la página nunca se queda vacía.
 Solo usa la biblioteca estándar de Python.
 """
-import datetime, json, os, re, sys, time, urllib.parse, urllib.request
-import xml.etree.ElementTree as ET
+import datetime, json, os, re, sys, urllib.parse, urllib.request
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(RAIZ, "data")
-HOY = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=5)).date().isoformat()  # fecha de Ecuador
+AHORA = datetime.datetime.now(datetime.timezone.utc)
+HOY = (AHORA - datetime.timedelta(hours=5)).date().isoformat()  # fecha de Ecuador
+DATA_ID = "0x91d58b7485fdcf89:0x2e2cef1353b72836"               # Frutireex - Fresas con chocolate (Google Maps)
 
 
 def leer(nombre, por_defecto):
@@ -34,29 +40,75 @@ def guardar(nombre, datos):
 def pedir(url, cabeceras=None, cuerpo=None, metodo=None):
     req = urllib.request.Request(url, data=cuerpo, headers=dict(cabeceras or {}), method=metodo)
     req.add_header("User-Agent", "frutireex-actualizacion/1.0 (+https://www.frutireex.com)")
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=40) as r:
         return r.read()
 
 
-def google(sitio):
-    clave = os.environ.get("GOOGLE_PLACES_KEY", "").strip()
-    if not clave:
-        print("Google: falta el secreto GOOGLE_PLACES_KEY; se mantiene el número que hay.")
-        return
-    g = sitio.setdefault("google", {})
+def fecha_desde_texto(txt):
+    """«hace 2 días», «hace una semana», «a week ago»… → fecha aproximada (AAAA-MM-DD)."""
+    t = (txt or "").lower()
+    n = re.search(r"(\d+)", t)
+    k = int(n.group(1)) if n else 1
+    dias = 0
+    if re.search(r"hora|minuto|hour|minute", t):
+        dias = 0
+    elif re.search(r"día|dia|day", t):
+        dias = k
+    elif re.search(r"semana|week", t):
+        dias = 7 * k
+    elif re.search(r"mes|month", t):
+        dias = 30 * k
+    elif re.search(r"año|ano|year", t):
+        dias = 365 * k
+    return ((AHORA - datetime.timedelta(hours=5)) - datetime.timedelta(days=dias)).date().isoformat()
+
+
+def limpiar(resenas, excluir):
+    fuera = {x.strip().lower() for x in excluir or []}
+    vistas, salida = set(), []
+    for r in resenas:
+        if not r.get("texto") or r.get("autor", "").strip().lower() in fuera:
+            continue
+        clave = (r.get("autor"), r.get("texto")[:40])
+        if clave in vistas:
+            continue
+        vistas.add(clave)
+        salida.append(r)
+    salida.sort(key=lambda z: z.get("fecha", ""), reverse=True)
+    return salida[:6]
+
+
+def con_serpapi(g, clave):
+    q = urllib.parse.urlencode({"engine": "google_maps_reviews", "data_id": g.get("data_id") or DATA_ID,
+                                "sort_by": "newestFirst", "hl": "es", "api_key": clave})
+    d = json.loads(pedir("https://serpapi.com/search.json?" + q))
+    if d.get("error"):
+        raise RuntimeError(d["error"])
+    info = d.get("place_info") or {}
+    if info.get("reviews"):
+        g["opiniones"] = int(info["reviews"])
+    if info.get("rating"):
+        g["nota"] = round(float(info["rating"]), 1)
+    resenas = []
+    for x in d.get("reviews", [])[:20]:
+        texto = (x.get("snippet") or (x.get("extracted_snippet") or {}).get("original") or "").strip()
+        fecha = (x.get("iso_date") or "")[:10] or fecha_desde_texto(x.get("date"))
+        resenas.append({"autor": (x.get("user") or {}).get("name", "Cliente"), "nota": x.get("rating", 5),
+                        "texto": texto[:600], "fecha": fecha})
+    return resenas
+
+
+def con_places(g, clave):
     lugar = (os.environ.get("GOOGLE_PLACE_ID") or g.get("place_id") or "").strip()
     if not lugar:  # la primera vez se busca el local por nombre y se guarda su identificador
-        cuerpo = json.dumps({"textQuery": "Fruti Reex fresas con chocolate Guayllabamba", "languageCode": "es"}).encode()
+        cuerpo = json.dumps({"textQuery": "Frutireex Fresas con chocolate Guayllabamba", "languageCode": "es"}).encode()
         r = json.loads(pedir("https://places.googleapis.com/v1/places:searchText",
                              {"Content-Type": "application/json", "X-Goog-Api-Key": clave,
-                              "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress"}, cuerpo, "POST"))
+                              "X-Goog-FieldMask": "places.id,places.displayName"}, cuerpo, "POST"))
         candidatos = [p for p in r.get("places", []) if re.search(r"re+x", p.get("displayName", {}).get("text", ""), re.I)]
         if not candidatos:
-            print("Google: no se encontró el local en la búsqueda.")
-            return
-        lugar = candidatos[0]["id"]
-        g["place_id"] = lugar
-        print("Google: local encontrado:", candidatos[0].get("displayName", {}).get("text"), "·", candidatos[0].get("formattedAddress"))
+            raise RuntimeError("no se encontró el local")
+        lugar = g["place_id"] = candidatos[0]["id"]
     r = json.loads(pedir("https://places.googleapis.com/v1/places/" + urllib.parse.quote(lugar) + "?languageCode=es",
                          {"X-Goog-Api-Key": clave, "X-Goog-FieldMask": "rating,userRatingCount,reviews"}))
     if r.get("userRatingCount"):
@@ -64,74 +116,28 @@ def google(sitio):
     if r.get("rating"):
         g["nota"] = round(float(r["rating"]), 1)
     resenas = []
-    for x in r.get("reviews", [])[:5]:
+    for x in r.get("reviews", []):
         texto = (x.get("text") or x.get("originalText") or {}).get("text", "").strip()
-        if not texto:
-            continue
         resenas.append({"autor": x.get("authorAttribution", {}).get("displayName", "Cliente"), "nota": x.get("rating", 5),
-                        "texto": texto[:600], "cuando": x.get("relativePublishTimeDescription", ""), "fecha": (x.get("publishTime") or "")[:10]})
-    resenas.sort(key=lambda z: z.get("fecha", ""), reverse=True)
-    if resenas:
-        g["resenas"] = resenas
-    g["fuente"] = "Google"
+                        "texto": texto[:600], "fecha": (x.get("publishTime") or "")[:10]})
+    return resenas
+
+
+def google(sitio):
+    g = sitio.setdefault("google", {})
+    serp, places = os.environ.get("SERPAPI_KEY", "").strip(), os.environ.get("GOOGLE_PLACES_KEY", "").strip()
+    if not serp and not places:
+        print("Google: falta el secreto SERPAPI_KEY (o GOOGLE_PLACES_KEY); se mantiene lo que hay.")
+        return
+    nuevas = con_serpapi(g, serp) if serp else con_places(g, places)
+    # se juntan con las que ya había, para no perder las recientes si Google devuelve menos
+    juntas = limpiar(nuevas + (g.get("resenas") or []), g.get("excluir"))
+    if juntas:
+        g["resenas"] = juntas
+    g["fuente"] = "Google (SerpApi, más recientes)" if serp else "Google (Places)"
     g["fecha"] = HOY
-    print("Google:", g.get("nota"), "estrellas,", g.get("opiniones"), "opiniones,", len(resenas), "reseñas recientes.")
-
-
-def youtube(sitio):
-    canal = (sitio.get("youtube") or {}).get("canal")
-    if not canal:
-        return
-    # el feed del canal a veces responde 404 desde los servidores de GitHub: se prueba también la lista de subidas
-    fuentes = ["https://www.youtube.com/feeds/videos.xml?channel_id=" + urllib.parse.quote(canal)]
-    if canal.startswith("UC"):
-        fuentes.append("https://www.youtube.com/feeds/videos.xml?playlist_id=UU" + urllib.parse.quote(canal[2:]))
-    xml, ultimo_error = None, None
-    for url in fuentes:
-        for intento in range(2):
-            try:
-                xml = pedir(url)
-                break
-            except Exception as e:  # noqa: BLE001
-                ultimo_error = e
-                time.sleep(3)
-        if xml:
-            break
-    if not xml:
-        raise ultimo_error
-    ns = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015"}
-    videos = []
-    for e in ET.fromstring(xml).findall("a:entry", ns):
-        vid = e.findtext("yt:videoId", namespaces=ns)
-        if vid:
-            videos.append({"id": vid, "titulo": e.findtext("a:title", default="", namespaces=ns),
-                           "fecha": (e.findtext("a:published", default="", namespaces=ns) or "")[:10]})
-    if videos:
-        guardar("youtube.json", {"videos": videos[:8], "fecha": HOY})
-    print("YouTube:", len(videos), "videos.")
-
-
-def instagram():
-    feed = os.environ.get("BEHOLD_FEED", "").strip()
-    if not feed:
-        print("Instagram: falta el secreto BEHOLD_FEED; se muestra la cuenta directamente.")
-        return
-    if not feed.startswith("https://"):
-        feed = "https://feeds.behold.so/" + feed
-    d = json.loads(pedir(feed))
-    posts = d.get("posts", []) if isinstance(d, dict) else d
-    salida = []
-    for p in posts[:9]:
-        tam = (p.get("sizes") or {}).get("medium") or {}
-        img = tam.get("mediaUrl") or p.get("thumbnailUrl") or p.get("mediaUrl")
-        if p.get("mediaType") == "VIDEO" and not tam.get("mediaUrl"):
-            img = p.get("thumbnailUrl") or img
-        if img and p.get("permalink"):
-            salida.append({"url": p["permalink"], "img": img, "texto": (p.get("prunedCaption") or p.get("caption") or "")[:200],
-                           "fecha": (p.get("timestamp") or "")[:10]})
-    if salida:
-        guardar("instagram.json", {"posts": salida, "fecha": HOY})
-    print("Instagram:", len(salida), "fotos.")
+    print("Google:", g.get("nota"), "estrellas,", g.get("opiniones"), "opiniones; reseñas más recientes:",
+          ", ".join(r["autor"] + " (" + r.get("fecha", "") + ")" for r in juntas[:3]))
 
 
 def cifras_en_pagina(sitio):
@@ -155,11 +161,10 @@ def cifras_en_pagina(sitio):
 
 def main():
     sitio = leer("sitio.json", {})
-    for nombre, paso in (("Google", lambda: google(sitio)), ("YouTube", lambda: youtube(sitio)), ("Instagram", instagram)):
-        try:
-            paso()
-        except Exception as e:  # un paso que falla no detiene a los demás
-            print(nombre + ": no se pudo actualizar (" + type(e).__name__ + ": " + str(e)[:200] + "). Se deja lo anterior.")
+    try:
+        google(sitio)
+    except Exception as e:  # si falla, se queda lo anterior
+        print("Google: no se pudo actualizar (" + type(e).__name__ + ": " + str(e)[:200] + "). Se deja lo anterior.")
     sitio["revisado"] = HOY
     guardar("sitio.json", sitio)
     cifras_en_pagina(sitio)

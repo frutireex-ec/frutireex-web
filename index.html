@@ -1069,35 +1069,11 @@ body{overflow-x:clip}
 @media (max-width:1240px){.head-row > .pill-lime{display:none}.nav a{padding:11px 10px}}
 .cc-top b{margin-right:64px}
 
-/* Lo último en redes (V13): se llena solo desde las cuentas oficiales */
-.feed{background:var(--cream)}
-.feed-head{max-width:62ch;margin-bottom:clamp(22px,3vw,34px)}
-.feed-head .lede{margin-top:10px}
-.feed-yt{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:22px}
-.yt-v{display:grid;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;line-height:1.3}
-.yt-v img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:18px;border:2px solid var(--green-deep);background:var(--cream-2)}
-.yt-v:hover img{transform:translateY(-3px);transition:transform .25s var(--ease)}
-.feed-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start}
-.feed-card{background:var(--paper);border-radius:var(--r);border:2px solid var(--cream-2);overflow:hidden;min-width:0;display:flex;flex-direction:column}
-.feed-card header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 18px;border-top:7px solid var(--green-deep)}
-.feed-card header b{font-size:1.05rem;color:var(--ink)}
-.feed-card header a{color:var(--green);font-weight:700;font-size:14.5px;text-decoration:none}
-.feed-card header a:hover{text-decoration:underline}
-.f-ig header{border-top-color:var(--pink-ink)}.f-fb header{border-top-color:var(--lime)}.f-yt header{border-top-color:var(--flame)}
-.feed-box{min-height:420px;display:grid;place-items:center;background:var(--cream-2)}
-.feed-box.con-fotos{min-height:0;place-items:stretch}
-.feed-frame{display:block;width:100%;height:560px;border:0;background:#fff}
-.feed-frame.yt{height:auto;aspect-ratio:16/9}
-.f-yt .feed-box{min-height:0}
-.feed-box .tiktok-embed{margin:0 !important;width:100%}
-.feed-ir{font-weight:700;color:var(--green);padding:28px 20px;text-align:center;text-decoration:none}
-.feed-ir:hover{text-decoration:underline}
-.ig-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}
-.ig-grid a{display:block;aspect-ratio:1;overflow:hidden;background:var(--cream)}
-.ig-grid img{width:100%;height:100%;object-fit:cover;display:block}
+/* Reseñas recientes de Google y contador de visitas (V13) */
 .g-resenas{display:contents}
 .g-est{color:#E8A400;letter-spacing:2px;font-size:15px}
-.foot .visitas{font-weight:600}
+.foot .visitas{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--green-deep);border-radius:999px;padding:6px 14px;font-weight:700;font-variant-numeric:tabular-nums}
+.foot .visitas::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green-deep)}
 
 </style>
 </head>
@@ -1382,26 +1358,6 @@ body{overflow-x:clip}
     </div>
   </section>
 
-    <section class="sec club" id="tarjeta" aria-labelledby="club-title">
-    <div class="wrap club-grid">
-      <div class="club-copy">
-        <p class="eyebrow">Tarjeta de fidelidad</p>
-        <h2 class="h2 disp" id="club-title">Cada malcriada suma</h2>
-        <p class="lede">Entra a la app, lleva tu tarjeta en el celular y acumula puntos con tus malcriadas. Ahí también encuentras las promos del Tío.</p>
-        <div class="ctas">
-          <a class="pill pill-green" href="https://app.frutireex.com">Ingresar a la app</a>
-        </div>
-      </div>
-      <a class="club-card" href="https://app.frutireex.com" aria-label="Ingresar a la app de Fruti Reex">
-        <span class="cc-top"><svg viewBox="375.9 138.6 1006.8 357.1" aria-hidden="true"><use href="#lg-word"/><use href="#lg-dino"/></svg><b>Tarjeta Reex</b></span>
-        <span class="cc-pts"><small>Tus puntos</small><b>★ ★ ★ ☆ ☆</b></span>
-        <span class="cc-bar"><i></i></span>
-        <span class="cc-foot">Sobrino favorito<em>Ingresar a la app →</em></span>
-        <img class="cc-st" src="assets/st-cara-rosa.webp" alt="" aria-hidden="true">
-      </a>
-    </div>
-  </section>
-
     <section class="sec local2 casa" id="local" aria-labelledby="local-title">
     <div class="wrap">
       <div class="local-head">
@@ -1455,7 +1411,7 @@ body{overflow-x:clip}
       <div class="team2">
         <figure class="team-hero"><img src="assets/f/equipo-1-66.webp" alt="El equipo de Fruti Reex con el Tío Rex frente a la pared verde" loading="lazy"><figcaption><b>Hecha con amor, trabajo en equipo y resiliencia</b><span>la familia completa, con el Tío al centro</span></figcaption></figure>
         <div class="team-side">
-          <figure class="pola" style="--r:3deg;margin:0"><div class="ph"><img src="assets/f/equipo-1-46-s.webp" alt="Una compañera sonriendo con la gorra verde del uniforme" loading="lazy"></div><figcaption class="cap"><span>esta sonrisa no se cobra</span></figcaption></figure>
+          <figure class="pola" style="--r:3deg;margin:0"><div class="ph"><img src="assets/f/equipo-0-41-s.webp" alt="Una compañera sonriendo junto al Tío Rex, que levanta el pulgar" loading="lazy"></div><figcaption class="cap"><span>esta sonrisa no se cobra</span></figcaption></figure>
           <figure class="pola" style="--r:-2.5deg;margin:0"><div class="ph"><img src="assets/f/equipo-1-72-s.webp" alt="Preparando una malcriada en la barra" loading="lazy"></div><figcaption class="cap"><span>magia en vasito</span></figcaption></figure>
         </div>
       </div>
@@ -1577,26 +1533,9 @@ body{overflow-x:clip}
           <span data-g="opiniones">330 opiniones en Google</span>
         </div>
         <div class="g-resenas" id="gResenas" hidden></div>
-        <figure class="bubble"><q>Fue una linda experiencia, el lugar es muy bonito y tranquilo, la energía de todos es muy linda siempre están con una sonrisa y te atiende de buena forma y su producto es muy bueno y rico 😋. Me encantó 🫶</q><figcaption class="who"><span class="av">A</span><span><b style="color:var(--ink)">Ayleen</b><br>★★★★★ en Google</span></figcaption></figure>
         <figure class="bubble pinkb"><q>Gracias, fuimos del sur y nos atendieron muy lindo. Nos encantó la atención ❤️🦖</q><figcaption class="who"><span class="av">N</span><span><b style="color:var(--ink)">Noah detalles con amor</b><br>Comentario en redes</span></figcaption></figure>
         <figure class="bubble chat"><q>Pero qué buenazooo amigo Reex 😋</q><figcaption class="who"><span class="av">💬</span><span><b style="color:var(--ink)">Mensaje de un cliente</b><br>WhatsApp</span></figcaption></figure>
         <div class="bubble inv limey"><span class="kind">Tu turno</span><p>Tómale una foto a tu malcriada y etiquétanos en @frutireex. Las mejores aparecen aquí.</p><a class="pill pill-green" href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Ir a Instagram ↗</a></div>
-      </div>
-    </div>
-  </section>
-    <section class="sec feed" id="ultimo" aria-labelledby="feed-title">
-    <div class="wrap">
-      <div class="feed-head">
-        <p class="eyebrow">Recién publicado</p>
-        <h2 class="h2 disp" id="feed-title">Lo último en nuestras redes</h2>
-        <p class="lede">Las fotos y los videos más nuevos de Fruti Reex. Aparecen aquí solos cada vez que publicamos.</p>
-      </div>
-      <div class="feed-yt" id="feedYt" hidden></div>
-      <div class="feed-grid">
-        <article class="feed-card f-ig"><header><b>Instagram</b><a href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">@frutireex ↗</a></header><div class="feed-box" id="feed-instagram"><a class="feed-ir" href="https://www.instagram.com/frutireex/" target="_blank" rel="noopener">Ver las fotos en Instagram ↗</a></div></article>
-        <article class="feed-card f-tt"><header><b>TikTok</b><a href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">@fruti_reex ↗</a></header><div class="feed-box" id="feed-tiktok"><a class="feed-ir" href="https://www.tiktok.com/@fruti_reex" target="_blank" rel="noopener">Ver los videos en TikTok ↗</a></div></article>
-        <article class="feed-card f-fb"><header><b>Facebook</b><a href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">Frutireex ↗</a></header><div class="feed-box" id="feed-facebook"><a class="feed-ir" href="https://www.facebook.com/share/18D3yjHcU3/" target="_blank" rel="noopener">Ver la página en Facebook ↗</a></div></article>
-        <article class="feed-card f-yt"><header><b>YouTube</b><a href="https://www.youtube.com/@Fruti_reex" target="_blank" rel="noopener">@Fruti_reex ↗</a></header><div class="feed-box" id="feed-youtube"><a class="feed-ir" href="https://www.youtube.com/@Fruti_reex" target="_blank" rel="noopener">Ver el canal en YouTube ↗</a></div></article>
       </div>
     </div>
   </section>
@@ -2064,23 +2003,32 @@ body{overflow-x:clip}
   document.addEventListener("click", e => { const b = e.target.closest("[data-liveload]"); if (b) loadLive(b.dataset.liveload); });
 
 
-  /* ---------- Lo último en redes, reseñas de Google y contador de visitas ----------
-     data/sitio.json, data/youtube.json y data/instagram.json los refresca cada madrugada
-     una tarea automática de GitHub (.github/workflows/actualizar.yml → scripts/actualizar.py). */
+  /* ---------- Reseñas de Google y contador de visitas ----------
+     data/sitio.json lo refresca cada madrugada una tarea automática de GitHub
+     (.github/workflows/actualizar.yml → scripts/actualizar.py). */
   (function redes(){
-    const YT_SUBIDAS = "UUuqD6uF-1K8UJkHpCp_xq5A";            // lista "subidas" del canal @Fruti_reex
-    const FB_PAGINA = "https://www.facebook.com/p/Frutireex-61564519319780/";
     const escH = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
     const corto = (s, n) => { s = String(s || "").replace(/\s+/g, " ").trim(); return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : s; };
+    const miles = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     const leer = u => fetch(u, {cache: "no-cache"}).then(r => r.ok ? r.json() : null).catch(() => null);
     const t0 = performance.now();
 
-    // reseñas de Google: el número y las opiniones más recientes
+    /* «hace 2 días», calculado con la fecha de la reseña para que no se quede viejo */
+    function haceCuanto(fecha){
+      const t = Date.parse(fecha); if (!isFinite(t)) return "";
+      const d = Math.max(0, Math.floor((Date.now() - t) / 86400000));
+      if (d === 0) return "hoy"; if (d === 1) return "ayer"; if (d < 7) return "hace " + d + " días";
+      const s = Math.floor(d / 7); if (d < 30) return s === 1 ? "hace una semana" : "hace " + s + " semanas";
+      const m = Math.floor(d / 30); if (d < 365) return m === 1 ? "hace un mes" : "hace " + m + " meses";
+      const a = Math.floor(d / 365); return a === 1 ? "hace un año" : "hace " + a + " años";
+    }
+
+    // reseñas de Google: la nota, el número y las opiniones más recientes
     leer("data/sitio.json").then(d => {
       if (!d) return;
       const g = d.google || {};
       const poner = () => {
-        if (g.opiniones > 0) document.querySelectorAll('[data-g="opiniones"]').forEach(el => { el.textContent = String(Math.round(g.opiniones)).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " opiniones en Google"; });
+        if (g.opiniones > 0) document.querySelectorAll('[data-g="opiniones"]').forEach(el => { el.textContent = miles(g.opiniones) + " opiniones en Google"; });
         if (g.nota > 0) {
           const n = Number(g.nota).toFixed(1).replace(".", ",");
           document.querySelectorAll('[data-g="nota"]').forEach(el => { el.textContent = n + " ★"; });
@@ -2089,69 +2037,46 @@ body{overflow-x:clip}
       };
       setTimeout(poner, Math.max(0, 2300 - (performance.now() - t0)));   // después de que la portada cuenta las cifras
       resenas(g.resenas || []);
-      contador(d.contador || {});
+      goat(d.contador || {});
     });
 
     function resenas(lista){
       const box = document.getElementById("gResenas");
-      if (!box || !lista.length) return;
-      box.innerHTML = lista.filter(r => r && r.texto).slice(0, 3).map(r =>
-        '<figure class="bubble g-res"><span class="g-est" role="img" aria-label="' + (Math.round(r.nota) || 5) + ' de 5 estrellas">' + "★".repeat(Math.max(1, Math.min(5, Math.round(r.nota) || 5))) + '</span>' +
-        '<q>' + escH(corto(r.texto, 230)) + '</q><figcaption class="who"><span class="av">' + escH((r.autor || "?").trim().charAt(0).toUpperCase()) + '</span>' +
-        '<span><b style="color:var(--ink)">' + escH(r.autor || "Cliente") + '</b><br>Opinión en Google' + (r.cuando ? " · " + escH(r.cuando) : "") + '</span></figcaption></figure>').join("");
-      box.hidden = !box.innerHTML;
+      if (!box) return;
+      const ok = lista.filter(r => r && r.texto).sort((a, b) => String(b.fecha || "").localeCompare(String(a.fecha || ""))).slice(0, 3);
+      if (!ok.length) return;
+      box.innerHTML = ok.map((r, i) => {
+        const cuando = r.fecha ? haceCuanto(r.fecha) : (r.cuando || "");
+        const est = Math.max(1, Math.min(5, Math.round(r.nota) || 5));
+        return '<figure class="bubble g-res' + (i === 1 ? " pinkb" : "") + '"><span class="g-est" role="img" aria-label="' + est + ' de 5 estrellas">' + "★".repeat(est) + '</span>' +
+          '<q>' + escH(corto(r.texto, 230)) + '</q><figcaption class="who"><span class="av">' + escH((r.autor || "?").trim().charAt(0).toUpperCase()) + '</span>' +
+          '<span><b style="color:var(--ink)">' + escH(r.autor || "Cliente") + '</b><br>Opinión en Google' + (cuando ? " · " + escH(cuando) : "") + '</span></figcaption></figure>';
+      }).join("");
+      box.hidden = false;
     }
 
-    // contador de visitas (GoatCounter): solo cuando está configurado en data/sitio.json
-    function contador(c){
+    /* Contador de visitas: suma una visita por persona cada vez que abre la página (no al recargar)
+       y muestra el total en el pie de página. Usa el contador público y gratuito de abacus.jasoncameron.dev. */
+    (function visitas(){
+      const el = document.getElementById("visitas"); if (!el || !REAL_HOST) return;
+      let nueva = true;
+      try { nueva = !sessionStorage.getItem("frx-visita"); sessionStorage.setItem("frx-visita", "1"); } catch (e) {}
+      fetch("https://abacus.jasoncameron.dev/" + (nueva ? "hit" : "get") + "/frutireex-com/visitas")
+        .then(r => r.ok ? r.json() : null)
+        .then(j => {
+          const n = j && Number(j.value); if (!(n > 0)) return;
+          el.textContent = miles(n) + (n === 1 ? " visita" : " visitas") + " a la página";
+          el.hidden = false;
+        }).catch(() => {});
+    })();
+
+    // estadísticas privadas con GoatCounter (opcional: se activa poniendo el código en data/sitio.json)
+    function goat(c){
       if (!REAL_HOST || !c.goatcounter || !/^[a-z0-9-]+$/.test(c.goatcounter)) return;
-      const base = "https://" + c.goatcounter + ".goatcounter.com";
-      const sc = document.createElement("script"); sc.async = true; sc.src = "https://gc.zgo.at/count.js"; sc.setAttribute("data-goatcounter", base + "/count");
+      const sc = document.createElement("script"); sc.async = true; sc.src = "https://gc.zgo.at/count.js";
+      sc.setAttribute("data-goatcounter", "https://" + c.goatcounter + ".goatcounter.com/count");
       document.body.appendChild(sc);
-      if (!c.mostrar) return;
-      fetch(base + "/counter/TOTAL.json").then(r => r.ok ? r.json() : null).then(j => {
-        const n = j && (j.count || j.count_unique); if (!n) return;
-        const el = document.getElementById("visitas"); if (!el) return;
-        el.textContent = String(n).replace(/[,   ]/g, ".") + " visitas a la página"; el.hidden = false;
-      }).catch(() => {});
     }
-
-    // lo último en redes: se carga cuando la sección se acerca a la pantalla
-    const sec = document.getElementById("ultimo"); if (!sec) return;
-    let listo = false;
-    function cargar(){
-      if (listo) return; listo = true;
-      leer("data/youtube.json").then(y => {
-        const vs = ((y && y.videos) || []).filter(v => /^[A-Za-z0-9_-]{6,20}$/.test(v.id)).slice(0, 4);
-        const box = document.getElementById("feedYt"); if (!box || !vs.length) return;
-        box.innerHTML = vs.map(v => '<a class="yt-v" href="https://www.youtube.com/watch?v=' + v.id + '" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/' + v.id + '/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span>' + escH(corto(v.titulo, 80)) + '</span></a>').join("");
-        box.hidden = false;
-      });
-      leer("data/instagram.json").then(ig => {
-        const ps = ((ig && ig.posts) || []).filter(p => p.img && /^https:\/\//.test(p.img) && /^https:\/\/(www\.)?instagram\.com\//.test(p.url || "")).slice(0, 9);
-        const box = document.getElementById("feed-instagram"); if (!box) return;
-        if (ps.length) {
-          box.classList.add("con-fotos");
-          box.innerHTML = '<div class="ig-grid">' + ps.map(p => '<a href="' + escH(p.url) + '" target="_blank" rel="noopener"><img src="' + escH(p.img) + '" alt="' + escH(corto(p.texto || "Publicación de Fruti Reex en Instagram", 120)) + '" loading="lazy"></a>').join("") + '</div>';
-        } else if (REAL_HOST) {
-          box.innerHTML = '<iframe class="feed-frame" title="Instagram de Fruti Reex" src="https://www.instagram.com/frutireex/embed/" loading="lazy" scrolling="no"></iframe>';
-        }
-      });
-      if (!REAL_HOST) return;   // en vistas previas no se cargan las redes de terceros
-      const tt = document.getElementById("feed-tiktok");
-      if (tt) {
-        tt.innerHTML = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fruti_reex" data-unique-id="fruti_reex" data-embed-type="creator" style="max-width:780px;min-width:288px"><section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@fruti_reex?refer=creator_embed">@fruti_reex</a></section></blockquote>';
-        const sc = document.createElement("script"); sc.async = true; sc.src = "https://www.tiktok.com/embed.js"; document.body.appendChild(sc);
-      }
-      const fb = document.getElementById("feed-facebook");
-      if (fb) fb.innerHTML = '<iframe class="feed-frame" title="Facebook de Fruti Reex" src="https://www.facebook.com/plugins/page.php?href=' + encodeURIComponent(FB_PAGINA) + '&tabs=timeline&width=500&height=560&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false" loading="lazy" allow="encrypted-media"></iframe>';
-      const yt = document.getElementById("feed-youtube");
-      if (yt) yt.innerHTML = '<iframe class="feed-frame yt" title="Videos de Fruti Reex en YouTube" src="https://www.youtube-nocookie.com/embed/videoseries?list=' + YT_SUBIDAS + '" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
-    }
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); cargar(); } }, {rootMargin: "700px 0px"});
-      io.observe(sec);
-    } else cargar();
   })();
 
 

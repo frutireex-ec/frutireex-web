@@ -1,6 +1,6 @@
 name: Actualización diaria de la página
 
-# Cada madrugada (05:17 en Ecuador) refresca las reseñas de Google, los videos de YouTube y las fotos de Instagram.
+# Cada madrugada (05:17 en Ecuador) trae de Google la nota, el número de opiniones y las reseñas más recientes.
 # También se puede correr a mano: pestaña Actions → "Actualización diaria de la página" → Run workflow.
 on:
   schedule:
@@ -20,11 +20,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Traer reseñas, videos y fotos
+      - name: Traer las reseñas de Google
         env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
           GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
-          BEHOLD_FEED: ${{ secrets.BEHOLD_FEED }}
         run: python3 scripts/actualizar.py
       - name: Guardar los cambios en la página
         run: |
@@ -34,6 +34,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Sin cambios hoy."
           else
-            git commit -m "Actualización diaria: reseñas de Google, YouTube e Instagram"
+            git commit -m "Actualización diaria: reseñas de Google"
             git push
           fi

@@ -2,16 +2,36 @@
   "google": {
     "nota": 4.9,
     "opiniones": 330,
-    "resenas": [],
-    "fuente": "dato del equipo",
-    "fecha": "2026-10-23"
+    "data_id": "0x91d58b7485fdcf89:0x2e2cef1353b72836",
+    "excluir": [
+      "Freddy Navarrete"
+    ],
+    "resenas": [
+      {
+        "autor": "Estefania 08",
+        "nota": 5,
+        "texto": "Muy deliciosas estas malcriadas 100% recomendado y muy buena atencion 🦖…",
+        "fecha": "2026-10-22"
+      },
+      {
+        "autor": "Joaquìn Gòmez",
+        "nota": 5,
+        "texto": "Las mejores fresas con crema y aparte de fresas nuevos sabores limitados que son deliciosos muy recomendado",
+        "fecha": "2026-10-20"
+      },
+      {
+        "autor": "Pamela Zaldumbide",
+        "nota": 5,
+        "texto": "Muy buena la atención y los ingredientes frescos",
+        "fecha": "2026-10-10"
+      }
+    ],
+    "fuente": "Google Maps, más recientes (revisado el 24 de octubre de 2026)",
+    "fecha": "2026-10-24"
   },
   "contador": {
-    "goatcounter": "",
-    "mostrar": false
-  },
-  "youtube": {
-    "canal": "UCuqD6uF-1K8UJkHpCp_xq5A"
+    "servicio": "abacus.jasoncameron.dev/frutireex-com/visitas",
+    "goatcounter": ""
   },
   "revisado": "2026-10-24"
 }
