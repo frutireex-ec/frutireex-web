@@ -1074,6 +1074,10 @@ body{overflow-x:clip}
 .g-est{color:#E8A400;letter-spacing:2px;font-size:15px}
 .foot .visitas{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--green-deep);border-radius:999px;padding:6px 14px;font-weight:700;font-variant-numeric:tabular-nums}
 .foot .visitas::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green-deep)}
+.proof{display:grid;grid-template-columns:repeat(2,max-content);gap:18px 56px}
+@media (max-width:560px){.proof{gap:14px 28px}}
+.proof .vis-top b{display:inline-flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.proof .vis-top b::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgb(206 232 93 / .25)}
 
 </style>
 </head>
@@ -1143,6 +1147,7 @@ body{overflow-x:clip}
           <li><b data-g="nota">4,9 ★</b><span data-g="opiniones">330 opiniones en Google</span></li>
           <li><b>Desde 2024</b><span>de la mesita al local</span></li>
           <li><b>13:30–19:30</b><span>todos los días</span></li>
+          <li class="vis-top" id="visitasTop" hidden><b>—</b><span>visitas a la página</span></li>
         </ul>
       </div>
       <div class="hero-art hero-arch">
@@ -2067,6 +2072,9 @@ body{overflow-x:clip}
           const n = j && Number(j.value); if (!(n > 0)) return;
           el.textContent = miles(n) + (n === 1 ? " visita" : " visitas") + " a la página";
           el.hidden = false;
+          // también arriba, en la portada, junto a la nota de Google y el horario
+          const top = document.getElementById("visitasTop");
+          if (top) { top.querySelector("b").textContent = miles(n); top.querySelector("span").textContent = (n === 1 ? "visita" : "visitas") + " a la página"; top.hidden = false; }
         }).catch(() => {});
     })();
 
