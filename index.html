@@ -2,6 +2,8 @@
 <html lang="es-EC">
 <head>
 <meta charset="utf-8">
+<script>/* Modo Halloween: solo el 31 de octubre y el 1 de noviembre de 2026 (hora de Ecuador). ?halloween=1 lo muestra y ?halloween=0 lo apaga, para probar. */
+(function(){var q=location.search.match(/[?&]halloween=([01])/),t=Date.now(),on=q?q[1]==="1":(t>=Date.UTC(2026,9,31,5,0,0)&&t<Date.UTC(2026,10,2,5,0,0));if(on){document.documentElement.classList.add("hw");document.addEventListener("DOMContentLoaded",function(){document.title="Fruti Reex · Noche de Halloween | Guayllabamba, Quito";var x=document.querySelector('meta[name="theme-color"]');if(x)x.content="#130A1D";});}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fruti Reex · Una malcriadita para el alma | Guayllabamba, Quito</title>
 <meta name="description" content="Fruti Reex: fresas, plátano y durazno con chocolate, crema reex y toppings en Guayllabamba, Quito. Conoce las malcriadas: Reex, Split, Tropical, Mix, Exótica, Reexita Chill y Godzilla.">
@@ -1100,6 +1102,46 @@ body{overflow-x:clip}
 .foot .privacidad p{margin:10px 0 0;line-height:1.55}
 
 </style>
+<style id="hw-css">
+/* ===== Modo Halloween 2026 · «El Tío salió disfrazado» =====
+   La noche reemplaza al verde y la calabaza al lima. Lo de Halloween lleva data-hw (solo se ve en modo Halloween)
+   y lo que se esconde esos días lleva data-no-hw. Fuera de las fechas la página queda exactamente como siempre. */
+html:not(.hw) [data-hw]{display:none!important}
+html.hw [data-no-hw]{display:none!important}
+html.hw{--green:#2B1842;--green-2:#3B2259;--green-deep:#130A1D;--lime:#FF8A1F;--lime-2:#FFD6AE;--pink:#FF5C39;--pink-soft:#FFCDBE;--on-green-2:#CDBEDB;--hw-hueso:#F4EEE1;--hw-sangre:#D7263D}
+html.hw .hero2::before{right:-12%;top:-30%;background:radial-gradient(circle,rgb(255 196 120 / .26),rgb(255 138 31 / .08) 38%,transparent 62%)}
+html.hw .hero2-h .script{color:var(--lime)}
+html.hw .stk-hw{background:var(--lime);color:var(--green-deep);margin-left:8px}
+html.hw .hw-dino{position:absolute;left:-30%;bottom:-10%;width:60%;height:auto;z-index:3;filter:drop-shadow(0 18px 24px rgb(0 0 0 / .45));animation:bob 4.5s ease-in-out infinite}
+html.hw .hw-luna{position:absolute;z-index:0;top:clamp(84px,9vw,120px);right:clamp(16px,6vw,110px);width:clamp(70px,9vw,128px);aspect-ratio:1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 34% 38%,rgb(214 190 150 / .55) 0 7%,transparent 8%),radial-gradient(circle at 62% 64%,rgb(214 190 150 / .5) 0 10%,transparent 11%),radial-gradient(circle at 66% 30%,rgb(214 190 150 / .4) 0 5%,transparent 6%),#FFEFC9;
+  box-shadow:0 0 40px 10px rgb(255 214 150 / .28),0 0 120px 40px rgb(255 160 60 / .12)}
+html.hw .hw-murcis{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+html.hw .hw-murci{position:absolute;width:var(--s,42px);color:#050208;opacity:.9;filter:drop-shadow(0 0 5px rgb(255 170 80 / .45));animation:hwVuela var(--t,9s) ease-in-out infinite;animation-delay:var(--d,0s)}
+html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .38s ease-in-out infinite alternate;transform-origin:50% 40%}
+@keyframes hwAletea{to{transform:scaleY(.45)}}
+@keyframes hwVuela{0%,100%{translate:0 0}50%{translate:var(--x,40px) var(--y,-18px)}}
+/* la sección de los stickers de Halloween */
+.hw-sec{background:radial-gradient(1100px 520px at 82% -10%,rgb(255 138 31 / .2),transparent 60%),linear-gradient(180deg,#130A1D,#24133A 55%,#130A1D);color:var(--hw-hueso,#F4EEE1);overflow:hidden}
+.hw-sec::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;background-image:radial-gradient(rgb(255 239 201 / .8) 1px,transparent 1.4px),radial-gradient(rgb(255 239 201 / .5) 1px,transparent 1.4px);background-size:120px 120px,70px 70px;background-position:10px 20px,40px 55px}
+.hw-sec::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;z-index:-1;pointer-events:none;background:linear-gradient(0deg,rgb(205 190 219 / .14),transparent)}
+.hw-sec .eyebrow{color:var(--lime)}
+.hw-head{max-width:760px}
+.hw-head h2{color:var(--hw-hueso,#F4EEE1)}
+.hw-head .script{display:block;font-size:clamp(2rem,4.4vw,3.6rem);line-height:1;color:var(--lime);rotate:-3deg;transform-origin:left;margin-top:6px}
+.hw-head .lede{color:#CDBEDB}
+.hw-grid{list-style:none;margin:clamp(36px,5vw,60px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,2.2vw,30px);align-items:end}
+.hw-it{display:grid;justify-items:center;gap:12px;rotate:var(--r,0deg)}
+.hw-it img{width:100%;height:auto;filter:drop-shadow(0 16px 22px rgb(0 0 0 / .5));transition:transform .35s var(--ease)}
+.hw-it:hover img{transform:translateY(-8px) rotate(-4deg) scale(1.04)}
+.hw-it span{font:800 12.5px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;background:var(--lime);color:#130A1D;padding:8px 12px;border-radius:999px;white-space:nowrap}
+.hw-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(34px,4vw,52px)}
+.hw-ctas .pill-line-cream{border-color:rgb(244 238 225 / .5);color:var(--hw-hueso,#F4EEE1)}
+.hw-nota{margin-top:16px;font-size:14px;color:#A996BC}
+@media (max-width:900px){.hw-grid{grid-template-columns:repeat(3,minmax(0,1fr))}html.hw .hw-dino{left:-20%;width:52%}}
+@media (max-width:560px){.hw-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}.hw-it:last-child{grid-column:1 / -1;width:56%;justify-self:center}.hw-it span{font-size:11px;padding:7px 10px}html.hw .hw-luna{top:96px;right:14px;width:54px}html.hw .hw-murci:nth-child(4){display:none}}
+@media (prefers-reduced-motion:reduce){html.hw .hw-murci,html.hw .hw-murci svg,html.hw .hw-dino{animation:none!important}.hw-it img{transition:none}}
+</style>
 </head>
 <body>
 <script>(function(){var d=document.documentElement;if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){d.classList.add("mo");setTimeout(function(){d.classList.remove("mo")},2600)}})();</script>
@@ -1151,17 +1193,27 @@ body{overflow-x:clip}
 
 <main>
     <section class="hero2" id="inicio" aria-labelledby="hero-title">
+    <div class="hw-luna" data-hw aria-hidden="true"></div>
+    <div class="hw-murcis" data-hw aria-hidden="true">
+      <span class="hw-murci" style="--s:46px;left:56%;top:16%;--t:8s;--x:60px;--y:-24px"><svg viewBox="0 0 64 30" aria-hidden="true"><path fill="currentColor" d="M32 10c1.6-3 3.4-4.5 4.4-4.5-.4 1.2-.5 2.6-.2 3.7 3.6-3.8 9.6-6.4 16.8-6.2 4.6.1 8.4 1.4 11 3.3-3.4-.2-5.8 1.6-6.8 4.4-2.6-1-5.6-.6-7.6 1.4-1.6-1.4-4-1.6-6-.4-1.6 2.6-3.6 4.6-6 6.2-1.4 1-2.8 2.8-3.6 4.8-.8-2-2.2-3.8-3.6-4.8-2.4-1.6-4.4-3.6-6-6.2-2-1.2-4.4-1-6 .4-2-2-5-2.4-7.6-1.4-1-2.8-3.4-4.6-6.8-4.4 2.6-1.9 6.4-3.2 11-3.3 7.2-.2 13.2 2.4 16.8 6.2.3-1.1.2-2.5-.2-3.7 1 0 2.8 1.5 4.4 4.5Z"/></svg></span>
+      <span class="hw-murci" style="--s:30px;left:66%;top:9%;--t:10s;--d:-3s;--x:-50px;--y:16px"><svg viewBox="0 0 64 30" aria-hidden="true"><path fill="currentColor" d="M32 10c1.6-3 3.4-4.5 4.4-4.5-.4 1.2-.5 2.6-.2 3.7 3.6-3.8 9.6-6.4 16.8-6.2 4.6.1 8.4 1.4 11 3.3-3.4-.2-5.8 1.6-6.8 4.4-2.6-1-5.6-.6-7.6 1.4-1.6-1.4-4-1.6-6-.4-1.6 2.6-3.6 4.6-6 6.2-1.4 1-2.8 2.8-3.6 4.8-.8-2-2.2-3.8-3.6-4.8-2.4-1.6-4.4-3.6-6-6.2-2-1.2-4.4-1-6 .4-2-2-5-2.4-7.6-1.4-1-2.8-3.4-4.6-6.8-4.4 2.6-1.9 6.4-3.2 11-3.3 7.2-.2 13.2 2.4 16.8 6.2.3-1.1.2-2.5-.2-3.7 1 0 2.8 1.5 4.4 4.5Z"/></svg></span>
+      <span class="hw-murci" style="--s:24px;left:44%;top:6%;--t:12s;--d:-6s;--x:40px;--y:20px"><svg viewBox="0 0 64 30" aria-hidden="true"><path fill="currentColor" d="M32 10c1.6-3 3.4-4.5 4.4-4.5-.4 1.2-.5 2.6-.2 3.7 3.6-3.8 9.6-6.4 16.8-6.2 4.6.1 8.4 1.4 11 3.3-3.4-.2-5.8 1.6-6.8 4.4-2.6-1-5.6-.6-7.6 1.4-1.6-1.4-4-1.6-6-.4-1.6 2.6-3.6 4.6-6 6.2-1.4 1-2.8 2.8-3.6 4.8-.8-2-2.2-3.8-3.6-4.8-2.4-1.6-4.4-3.6-6-6.2-2-1.2-4.4-1-6 .4-2-2-5-2.4-7.6-1.4-1-2.8-3.4-4.6-6.8-4.4 2.6-1.9 6.4-3.2 11-3.3 7.2-.2 13.2 2.4 16.8 6.2.3-1.1.2-2.5-.2-3.7 1 0 2.8 1.5 4.4 4.5Z"/></svg></span>
+      <span class="hw-murci" style="--s:34px;left:88%;top:52%;--t:9s;--d:-2s;--x:-36px;--y:-30px"><svg viewBox="0 0 64 30" aria-hidden="true"><path fill="currentColor" d="M32 10c1.6-3 3.4-4.5 4.4-4.5-.4 1.2-.5 2.6-.2 3.7 3.6-3.8 9.6-6.4 16.8-6.2 4.6.1 8.4 1.4 11 3.3-3.4-.2-5.8 1.6-6.8 4.4-2.6-1-5.6-.6-7.6 1.4-1.6-1.4-4-1.6-6-.4-1.6 2.6-3.6 4.6-6 6.2-1.4 1-2.8 2.8-3.6 4.8-.8-2-2.2-3.8-3.6-4.8-2.4-1.6-4.4-3.6-6-6.2-2-1.2-4.4-1-6 .4-2-2-5-2.4-7.6-1.4-1-2.8-3.4-4.6-6.8-4.4 2.6-1.9 6.4-3.2 11-3.3 7.2-.2 13.2 2.4 16.8 6.2.3-1.1.2-2.5-.2-3.7 1 0 2.8 1.5 4.4 4.5Z"/></svg></span>
+    </div>
     <div class="wrap hero2-grid">
       <div class="hero2-copy">
-        <span class="stk stk-loc" style="--r:-3deg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11A6.5 6.5 0 0 1 18.5 10c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Guayllabamba, Quito</span>
+        <span class="stk stk-loc" style="--r:-3deg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11A6.5 6.5 0 0 1 18.5 10c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Guayllabamba, Quito</span><span class="stk stk-hw" style="--r:4deg" data-hw>Modo Halloween · 31 oct y 1 nov</span>
         <h1 class="hero2-h" id="hero-title">
           <span class="disp">Una malcriadita</span>
-          <span class="script">para el alma</span>
+          <span class="script" data-no-hw>para el alma</span>
+          <span class="script" data-hw>para los sustos</span>
         </h1>
-        <p class="hero2-sub">Fresas con chocolate, crema reex y un Tío Rex que no se toma nada en serio. Empezamos en una mesita y hoy tenemos casa propia en Guayllabamba.</p>
+        <p class="hero2-sub" data-no-hw>Fresas con chocolate, crema reex y un Tío Rex que no se toma nada en serio. Empezamos en una mesita y hoy tenemos casa propia en Guayllabamba.</p>
+        <p class="hero2-sub" data-hw>Esta noche el Tío Rex sale disfrazado. Fresas con chocolate, crema reex y los stickers de Halloween, solo por estos días en nuestra casa de Guayllabamba.</p>
         <div class="ctas">
           <a class="pill pill-lime" href="#menu">Ver el menú</a>
-          <a class="pill pill-line-cream" href="#historia">Cómo empezó todo</a>
+          <a class="pill pill-line-cream" href="#historia" data-no-hw>Cómo empezó todo</a>
+          <a class="pill pill-line-cream" href="#halloween" data-hw>Stickers de Halloween</a>
         </div>
         <ul class="proof">
           <li><b data-g="nota">4,9 ★</b><span data-g="opiniones">330 opiniones en Google</span></li>
@@ -1172,7 +1224,8 @@ body{overflow-x:clip}
       </div>
       <div class="hero-art hero-arch">
         <div class="arch"><img src="assets/malcriadas.webp" width="1100" height="1678" alt="Malcriadas de Fruti Reex sobre fondo rosado: una con galleta Oreo, otra con pistacho y un bowl de fresas y durazno con chocolate" fetchpriority="high"></div>
-        <div class="hero-dino" aria-hidden="true"><svg viewBox="375.9 138.6 364.1 357.1"><use href="#lg-dino"/></svg></div>
+        <div class="hero-dino" aria-hidden="true" data-no-hw><svg viewBox="375.9 138.6 364.1 357.1"><use href="#lg-dino"/></svg></div>
+        <img class="hw-dino" data-hw src="assets/stk-hw26-globo.webp" width="701" height="720" alt="" aria-hidden="true">
         <span class="stk stk-men" style="--r:6deg">@frutireex</span>
         <div class="badge"><div><b>7</b>malcriadas<br>en el menú</div></div>
       </div>
@@ -1180,6 +1233,29 @@ body{overflow-x:clip}
   </section>
 
   <div class="ribbon" aria-hidden="true"><div class="ribbon-track" id="ribbon"></div></div>
+
+  <section class="sec hw-sec" id="halloween" data-hw aria-labelledby="hw-title">
+    <div class="wrap">
+      <div class="hw-head">
+        <p class="eyebrow">Halloween 2026</p>
+        <h2 class="h2 disp" id="hw-title">El Tío salió disfrazado</h2>
+        <span class="script">y trae stickers nuevos</span>
+        <p class="lede">Para esta noche de sustos el Tío Reex se puso cinco disfraces. Los stickers de Halloween están en el local solo por estos días: pregunta por ellos cuando vengas por tu malcriada.</p>
+      </div>
+      <ul class="hw-grid">
+        <li class="hw-it" style="--r:-5deg"><img src="assets/stk-hw26-globo.webp" width="700" height="700" alt="Sticker de Halloween del Tío Reex: el del globo rojo" loading="lazy"><span>El del globo rojo</span></li>
+        <li class="hw-it" style="--r:4deg"><img src="assets/stk-hw26-monito.webp" width="700" height="700" alt="Sticker de Halloween del Tío Reex: el del moñito" loading="lazy"><span>El del moñito</span></li>
+        <li class="hw-it" style="--r:-3deg"><img src="assets/stk-hw26-garras.webp" width="700" height="700" alt="Sticker de Halloween del Tío Reex: el de las garras" loading="lazy"><span>El de las garras</span></li>
+        <li class="hw-it" style="--r:5deg"><img src="assets/stk-hw26-rayas.webp" width="700" height="700" alt="Sticker de Halloween del Tío Reex: el de rayas" loading="lazy"><span>El de rayas</span></li>
+        <li class="hw-it" style="--r:-4deg"><img src="assets/stk-hw26-capa.webp" width="700" height="700" alt="Sticker de Halloween del Tío Reex: el de la capa" loading="lazy"><span>El de la capa</span></li>
+      </ul>
+      <div class="hw-ctas">
+        <a class="pill pill-lime" href="#visitanos">Cómo llegar</a>
+        <a class="pill pill-line-cream" href="https://wa.me/593960697442?text=Hola%20Fruti%20Reex%2C%20vi%20los%20stickers%20de%20Halloween%20en%20la%20p%C3%A1gina%20%F0%9F%8E%83" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      </div>
+      <p class="hw-nota">Abrimos todos los días de 13:30 a 19:30 en Guayllabamba.</p>
+    </div>
+  </section>
 
     <section class="follow" id="redes" aria-labelledby="follow-title">
     <div class="wrap follow-grid">
@@ -1678,7 +1754,8 @@ body{overflow-x:clip}
   })();
 
   /* ---------- Cinta ---------- */
-  const words = ["Si estás triste, ven. Si estás feliz, también","Felicidad en potecito","El gym puede esperar, este antojo no","Sin miedo al éxito","En caso de emergencia emocional, saque cucharada","Hecha con amor, trabajo en equipo y resiliencia"];
+  const HW = document.documentElement.classList.contains("hw");
+  const words = HW ? ["¿Dulce o truco? Mejor una malcriada","Un susto se cura con chocolate","Sin miedo al éxito… ni a los sustos","Esta noche el Tío sale disfrazado","Colecciona los stickers de Halloween","Ven disfrazado, sal feliz"] : ["Si estás triste, ven. Si estás feliz, también","Felicidad en potecito","El gym puede esperar, este antojo no","Sin miedo al éxito","En caso de emergencia emocional, saque cucharada","Hecha con amor, trabajo en equipo y resiliencia"];
   const ribSet = '<div class="ribbon-set">' + words.map(w => '<span class="disp">' + w + '</span><svg viewBox="0 0 100 120"><use href="#berry"/></svg>').join("") + '</div>';
   document.getElementById("ribbon").innerHTML = ribSet + ribSet;
 
@@ -2388,9 +2465,10 @@ body{overflow-x:clip}
   /* ---------- V8: colección de stickers del Tío, al final de la página ---------- */
   (function stickerWall(){
     const board = document.getElementById("stkBoard"); if (!board) return;
-    const S = hay("stickers") ? D.stickers : [["stk-sombrero","El primero · 2024"],["stk-fantasma","Halloween 2024"],["stk-navidad-2024","Navidad 2024"],["stk-cupido","San Valentín 2025"],
+    let S = hay("stickers") ? D.stickers : [["stk-sombrero","El primero · 2024"],["stk-fantasma","Halloween 2024"],["stk-navidad-2024","Navidad 2024"],["stk-cupido","San Valentín 2025"],
       ["stk-puchito","Puchito Reex"],["stk-diabluma","Diabluma Reex"],["stk-halloween-2025","Halloween 2025"],["stk-navidad-2025","Navidad 2025"],["stk-viuda","Año Viejo 2025"]];
     const R = [-6, 4, -3, 7, -5, 3, -7, 5, -2];
+    if (document.documentElement.classList.contains("hw")) S = S.concat([["stk-hw26-globo","Halloween 2026"],["stk-hw26-monito","Halloween 2026"],["stk-hw26-garras","Halloween 2026"],["stk-hw26-rayas","Halloween 2026"],["stk-hw26-capa","Halloween 2026"]]);
     board.innerHTML = S.map((x, i) => '<li class="stk-it" style="--r:' + (x[2] != null ? x[2] : R[i % R.length]) + 'deg"><img src="' + ASSET(x[0]) + '" alt="Sticker del Tío Reex: ' + esc(x[1]) + '" loading="lazy"><span>' + esc(x[1]) + '</span></li>').join("");
     if (!MOTION_OK || board.getBoundingClientRect().top < innerHeight) return;
     const items = [...board.children]; items.forEach(li => { li.style.opacity = "0"; });
