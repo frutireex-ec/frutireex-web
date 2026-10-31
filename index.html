@@ -1216,7 +1216,7 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
           <a class="pill pill-line-cream" href="#halloween" data-hw>Stickers de Halloween</a>
         </div>
         <ul class="proof">
-          <li><b data-g="nota">4,9 ★</b><span data-g="opiniones">330 opiniones en Google</span></li>
+          <li><b data-g="nota">4,9 ★</b><span data-g="opiniones">333 opiniones en Google</span></li>
           <li><b>Desde 2024</b><span>de la mesita al local</span></li>
           <li><b>13:30–19:30</b><span>todos los días</span><span class="abierto" data-abierto hidden></span></li>
           <li class="vis-top" id="visitasTop" hidden><b>—</b><span>visitas a la página</span></li>
@@ -1631,7 +1631,7 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
         <div class="rating">
           <b class="disp" data-g="nota-sola">4,9</b>
           <span class="stars5" aria-hidden="true">★★★★★</span>
-          <span data-g="opiniones">330 opiniones en Google</span>
+          <span data-g="opiniones">333 opiniones en Google</span>
         </div>
         <div class="g-resenas" id="gResenas" hidden></div>
         <figure class="bubble pinkb"><q>Gracias, fuimos del sur y nos atendieron muy lindo. Nos encantó la atención ❤️🦖</q><figcaption class="who"><span class="av">N</span><span><b style="color:var(--ink)">Noah detalles con amor</b><br>Comentario en redes</span></figcaption></figure>
@@ -2131,10 +2131,23 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
       const a = Math.floor(d / 365); return a === 1 ? "hace un año" : "hace " + a + " años";
     }
 
+    /* Reseñas revisadas a mano en Google Maps (más recientes). Si data/sitio.json trae unas más nuevas
+       (la tarea diaria, cuando tenga su clave), se usan esas. */
+    const RESENAS_FIJAS = {
+      fecha: "2026-10-31", nota: 4.9, opiniones: 333,
+      resenas: [
+        {autor: "victor jimenez", nota: 5, texto: "Excelente lugar", fecha: "2026-10-30"},
+        {autor: "Estefania 08", nota: 5, texto: "Muy deliciosas estas malcriadas 100% recomendado y muy buena atencion 🦖", fecha: "2026-10-23"},
+        {autor: "Joaquìn Gòmez", nota: 5, texto: "Las mejores fresas con crema y aparte de fresas nuevos sabores limitados que son deliciosos muy recomendado", fecha: "2026-10-22"},
+        {autor: "Micaela Lema", nota: 5, texto: "Están super ricas me encantaron 😻💕", fecha: "2026-10-21"}
+      ]
+    };
+
     // reseñas de Google: la nota, el número y las opiniones más recientes
     leer("data/sitio.json").then(d => {
-      if (!d) return;
-      const g = d.google || {};
+      d = d || {};
+      const g0 = d.google || {};
+      const g = String(g0.fecha || "") > RESENAS_FIJAS.fecha ? g0 : Object.assign({}, g0, RESENAS_FIJAS, {opiniones: Math.max(RESENAS_FIJAS.opiniones, Number(g0.opiniones) || 0)});
       const poner = () => {
         if (g.opiniones > 0) document.querySelectorAll('[data-g="opiniones"]').forEach(el => { el.textContent = miles(g.opiniones) + " opiniones en Google"; });
         if (g.nota > 0) {
@@ -2151,12 +2164,12 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
     function resenas(lista){
       const box = document.getElementById("gResenas");
       if (!box) return;
-      const ok = lista.filter(r => r && r.texto).sort((a, b) => String(b.fecha || "").localeCompare(String(a.fecha || ""))).slice(0, 3);
+      const ok = lista.filter(r => r && r.texto && (Number(r.nota) || 5) >= 4).sort((a, b) => String(b.fecha || "").localeCompare(String(a.fecha || ""))).slice(0, 4);
       if (!ok.length) return;
       box.innerHTML = ok.map((r, i) => {
         const cuando = r.fecha ? haceCuanto(r.fecha) : (r.cuando || "");
         const est = Math.max(1, Math.min(5, Math.round(r.nota) || 5));
-        return '<figure class="bubble g-res' + (i === 1 ? " pinkb" : "") + '"><span class="g-est" role="img" aria-label="' + est + ' de 5 estrellas">' + "★".repeat(est) + '</span>' +
+        return '<figure class="bubble g-res' + (i % 2 === 1 ? " pinkb" : "") + '"><span class="g-est" role="img" aria-label="' + est + ' de 5 estrellas">' + "★".repeat(est) + '</span>' +
           '<q>' + escH(corto(r.texto, 230)) + '</q><figcaption class="who"><span class="av">' + escH((r.autor || "?").trim().charAt(0).toUpperCase()) + '</span>' +
           '<span><b style="color:var(--ink)">' + escH(r.autor || "Cliente") + '</b><br>Opinión en Google' + (cuando ? " · " + escH(cuando) : "") + '</span></figcaption></figure>';
       }).join("");
@@ -2457,8 +2470,10 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
   const tileA = '<div class="mq tile t-lime"><span class="disp">Sin miedo</span><span class="script">al éxito</span></div>';
   const tileB = '<div class="mq tile t-green"><span class="disp">Una malcriadita</span><span class="script">para el alma</span></div>';
   const stTile = s => '<div class="mq tile t-cream"><img src="' + ASSET(s) + '" alt="" style="object-fit:contain;padding:18px"></div>';
-  const row1 = [mqItem("clientes-0-16"), mqItem("clientes-0-20"), tileA, mqItem("clientes-0-24"), mqItem("clientes-0-42"), stTile("st-malcriadas"), mqItem("clientes-0-66"), mqItem("local-1-30"), mqItem("clientes-0-77")].join("");
-  const row2 = [mqItem("clientes-0-22"), mqItem("clientes-0-43"), stTile("st-cara-rosa"), mqItem("clientes-0-58"), mqItem("local-1-22"), tileB, mqItem("clientes-0-70"), mqItem("local-1-42"), mqItem("clientes-0-26")].join("");
+  // fotos de clientes de octubre de 2026 (publicadas en @frutireex)
+  const cl = k => mqItem("clientes-2610-" + String(k).padStart(2, "0"));
+  const row1 = [cl(1), cl(2), tileA, cl(3), cl(4), stTile("st-malcriadas"), cl(5), cl(6), cl(7)].join("");
+  const row2 = [cl(8), cl(9), stTile("st-cara-rosa"), cl(10), cl(11), tileB, cl(12), cl(13), cl(14)].join("");
   document.getElementById("mq1").innerHTML = row1 + row1;
   document.getElementById("mq2").innerHTML = row2 + row2;
 
