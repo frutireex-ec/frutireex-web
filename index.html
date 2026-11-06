@@ -2470,8 +2470,9 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
   const tileA = '<div class="mq tile t-lime"><span class="disp">Sin miedo</span><span class="script">al éxito</span></div>';
   const tileB = '<div class="mq tile t-green"><span class="disp">Una malcriadita</span><span class="script">para el alma</span></div>';
   const stTile = s => '<div class="mq tile t-cream"><img src="' + ASSET(s) + '" alt="" style="object-fit:contain;padding:18px"></div>';
-  // fotos de clientes de octubre de 2026 (publicadas en @frutireex)
-  const cl = k => mqItem("clientes-2610-" + String(k).padStart(2, "0"));
+  // fotos de clientes (septiembre y octubre de 2026, subidas por Fruti Reex a Google Maps; puestas el 6-nov-2026).
+  // Las de octubre (clientes-2610-*) siguen en assets/f por si se quieren volver a usar.
+  const cl = k => mqItem("clientes-2611-" + String(k).padStart(2, "0"));
   const row1 = [cl(1), cl(2), tileA, cl(3), cl(4), stTile("st-malcriadas"), cl(5), cl(6), cl(7)].join("");
   const row2 = [cl(8), cl(9), stTile("st-cara-rosa"), cl(10), cl(11), tileB, cl(12), cl(13), cl(14)].join("");
   document.getElementById("mq1").innerHTML = row1 + row1;
