@@ -1,33 +1,51 @@
 {
   "google": {
     "nota": 4.9,
-    "opiniones": 330,
+    "opiniones": 344,
     "data_id": "0x91d58b7485fdcf89:0x2e2cef1353b72836",
     "excluir": [
       "Freddy Navarrete"
     ],
     "resenas": [
       {
-        "autor": "Estefania 08",
+        "autor": "Itati Cabezas",
         "nota": 5,
-        "texto": "Muy deliciosas estas malcriadas 100% recomendado y muy buena atencion 🦖…",
-        "fecha": "2026-10-22"
+        "texto": "Me gustó muchísimo la atención no se diga super lindos, muchisimas gracias nos vemos en la proxima salida, hoy les visitamos desde la parroquia San José de Minas, muy rico 🦖🫶🏻…",
+        "fecha": "2026-11-04"
       },
       {
-        "autor": "Joaquìn Gòmez",
+        "autor": "NAYELY GUACOLLANTE",
         "nota": 5,
-        "texto": "Las mejores fresas con crema y aparte de fresas nuevos sabores limitados que son deliciosos muy recomendado",
-        "fecha": "2026-10-20"
+        "texto": "Exelente,me encanta demasiado las fresas y es mi lugar favorito!🥳…",
+        "fecha": "2026-11-04"
       },
       {
-        "autor": "Pamela Zaldumbide",
+        "autor": "Juridia Espin M",
         "nota": 5,
-        "texto": "Muy buena la atención y los ingredientes frescos",
-        "fecha": "2026-10-10"
+        "texto": "Super buenos un sabor nada empalagoso y los envíos súper bien empacados",
+        "fecha": "2026-11-04"
+      },
+      {
+        "autor": "Maria Jose Lema",
+        "nota": 5,
+        "texto": "🍓 Desde el sur de Quito hasta Guayllabamba… ¡y sí, valió totalmente la pena! Las fresas de Frutireex son una delicia y el motivo perfecto para hacer una escapadita. ❤️ ¡Recomendadísimo para los amantes de las fresas!…",
+        "fecha": "2026-11-03"
+      },
+      {
+        "autor": "Alex Kvitko",
+        "nota": 5,
+        "texto": "Hay lugares que se ganan el cariño de las personas por lo que ofrecen y por cómo las hacen sentir. Frutirex es uno de ellos. ¡Muchos éxitos y que sigan creciendo! ❤️",
+        "fecha": "2026-11-03"
+      },
+      {
+        "autor": "Dalia Carrera",
+        "nota": 5,
+        "texto": "Me encantaron estaban muy ricas y la atención 10/10",
+        "fecha": "2026-11-03"
       }
     ],
-    "fuente": "Google Maps, más recientes (revisado el 24 de octubre de 2026)",
-    "fecha": "2026-10-24"
+    "fuente": "Google Maps, más recientes (revisado el 6 de noviembre de 2026)",
+    "fecha": "2026-11-06"
   },
   "contador": {
     "servicio": "abacus.jasoncameron.dev/frutireex-com/visitas",
