@@ -2,8 +2,8 @@
 <html lang="es-EC">
 <head>
 <meta charset="utf-8">
-<script>/* Modo Halloween: solo el 31 de octubre y el 1 de noviembre de 2026 (hora de Ecuador). ?halloween=1 lo muestra y ?halloween=0 lo apaga, para probar. */
-(function(){var q=location.search.match(/[?&]halloween=([01])/),t=Date.now(),on=q?q[1]==="1":(t>=Date.UTC(2026,9,31,5,0,0)&&t<Date.UTC(2026,10,2,5,0,0));if(on){document.documentElement.classList.add("hw");document.addEventListener("DOMContentLoaded",function(){document.title="Fruti Reex · Noche de Halloween | Guayllabamba, Quito";var x=document.querySelector('meta[name="theme-color"]');if(x)x.content="#130A1D";});}})();</script>
+<script>/* Modo Halloween APAGADO (6-nov-2026: pasó la temporada, la página vuelve al modo normal). Solo se ve con ?halloween=1, para probarlo o reusarlo el próximo año. */
+(function(){var q=location.search.match(/[?&]halloween=([01])/),on=!!q&&q[1]==="1";if(on){document.documentElement.classList.add("hw");document.addEventListener("DOMContentLoaded",function(){document.title="Fruti Reex · Noche de Halloween | Guayllabamba, Quito";var x=document.querySelector('meta[name="theme-color"]');if(x)x.content="#130A1D";});}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fruti Reex · Una malcriadita para el alma | Guayllabamba, Quito</title>
 <meta name="description" content="Fruti Reex: fresas, plátano y durazno con chocolate, crema reex y toppings en Guayllabamba, Quito. Conoce las malcriadas: Reex, Split, Tropical, Mix, Exótica, Reexita Chill y Godzilla.">
@@ -1225,7 +1225,7 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
       <div class="hero-art hero-arch">
         <div class="arch"><img src="assets/malcriadas.webp" width="1100" height="1678" alt="Malcriadas de Fruti Reex sobre fondo rosado: una con galleta Oreo, otra con pistacho y un bowl de fresas y durazno con chocolate" fetchpriority="high"></div>
         <div class="hero-dino" aria-hidden="true" data-no-hw><svg viewBox="375.9 138.6 364.1 357.1"><use href="#lg-dino"/></svg></div>
-        <img class="hw-dino" data-hw src="assets/stk-hw26-globo.webp" width="701" height="720" alt="" aria-hidden="true">
+        <img class="hw-dino" data-hw loading="lazy" src="assets/stk-hw26-globo.webp" width="701" height="720" alt="" aria-hidden="true">
         <span class="stk stk-men" style="--r:6deg">@frutireex</span>
         <div class="badge"><div><b>7</b>malcriadas<br>en el menú</div></div>
       </div>
