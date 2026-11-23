@@ -1149,7 +1149,7 @@ html.hw .hw-murci svg{width:100%;height:auto;display:block;animation:hwAletea .3
    Se enciende con ?quito=1. */
 html:not(.fq) [data-fq]{display:none!important}
 html.fq [data-no-fq]{display:none!important}
-html.fq{--green:#0B2D63;--green-2:#163F86;--green-deep:#071D44;--lime:#FFC83D;--lime-2:#FFE7A6;--pink:#E8203F;--pink-soft:#FFC6CF;--pink-ink:#C8102E;--on-green-2:#C7D3EC;--fq-rojo:#E4002B;--fq-azul:#00205B;--fq-oro:#FFC83D;--fq-cielo:#7FB3E8;
+html.fq{--green:#0B2D63;--green-2:#163F86;--green-deep:#071D44;--lime:#FFC83D;--lime-2:#FFE7A6;--pink:#FF9DB0;--pink-soft:#FFD0D9;--pink-ink:#C8102E;--on-green-2:#C7D3EC;--fq-rojo:#E4002B;--fq-azul:#00205B;--fq-oro:#FFC83D;--fq-cielo:#7FB3E8;
   --fq-chiva:repeating-linear-gradient(90deg,#E4002B 0 34px,#FFC83D 34px 52px,#0B2D63 52px 86px,#2FA36B 86px 104px,#F1EDE2 104px 116px)}
 html.fq .hero2::before{right:-14%;top:-32%;background:radial-gradient(circle,rgb(228 0 43 / .30),rgb(255 200 61 / .08) 40%,transparent 64%)}
 html.fq .hero2::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--fq-chiva);z-index:2}
@@ -1195,6 +1195,28 @@ html.fq .ribbon::before{top:0}html.fq .ribbon::after{bottom:0}
 @media (max-width:1100px){.fq-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.fq-grid{grid-template-columns:1fr 1fr}.fq-it{padding:16px 14px 18px}.fq-it h3{font-size:1.08rem}.fq-it p{font-size:14px}.fq-it:last-child{grid-column:1 / -1}}
 @media (prefers-reduced-motion:reduce){.fq-confeti i{animation:none!important;display:none}.fq-it{transition:none}}
+/* la chiva del Tío Reex: desfila de derecha a izquierda debajo de la portada */
+.fq-desfile{position:relative;overflow:hidden;isolation:isolate;height:clamp(230px,30vw,430px);background:linear-gradient(180deg,#071D44 0%,#0B2D63 62%,#0E3170 100%)}
+.fq-desfile .fq-ciudad{position:absolute;left:0;right:0;bottom:30px;width:100%;height:auto;z-index:0;color:#04112B}
+.fq-calle{position:absolute;left:0;right:0;bottom:0;height:34px;z-index:1;background:#1B1B2E;border-top:4px solid #2B2B44}
+.fq-calle::after{content:"";position:absolute;left:0;right:0;top:15px;height:4px;background:repeating-linear-gradient(90deg,#FFC83D 0 34px,transparent 34px 70px);animation:fqRaya 1.2s linear infinite}
+@keyframes fqRaya{to{background-position:-70px 0}}
+.fq-va{position:absolute;z-index:2;bottom:16px;left:0;width:clamp(320px,50vw,720px);animation:fqViaja 26s linear infinite}
+.fq-va img{display:block;width:100%;height:auto;animation:fqSalta .5s ease-in-out infinite alternate;filter:drop-shadow(0 14px 18px rgb(0 0 0 / .35))}
+.fq-va .globo{position:absolute;left:4%;top:-2%;font:800 clamp(13px,1.5vw,19px)/1 var(--f-disp);background:#fff;color:#C8102E;padding:10px 14px;border-radius:18px;border:3px solid #14142B;rotate:-6deg;white-space:nowrap}
+.fq-va .globo::after{content:"";position:absolute;left:28px;bottom:-14px;border:8px solid transparent;border-top-color:#14142B}
+@keyframes fqViaja{0%{transform:translateX(105vw)}100%{transform:translateX(-110%)}}
+@keyframes fqSalta{to{transform:translateY(-4px) rotate(-.4deg)}}
+@media (prefers-reduced-motion:reduce){.fq-va{animation:none;left:50%;translate:-50% 0}.fq-va img,.fq-calle::after{animation:none}}
+
+/* frases quiteñas pegadas por toda la página */
+.fq-fr{position:absolute;z-index:6;top:-20px;font:800 15.5px/1 var(--f-body);letter-spacing:.01em;padding:10px 16px;border-radius:999px;border:3px solid #fff;box-shadow:0 10px 22px rgb(0 0 0 / .22);rotate:var(--r,-3deg);white-space:nowrap;pointer-events:none;animation:bob 6s ease-in-out infinite}
+.fq-fr.dentro{top:14px}
+.fq-fr.l{left:var(--pad)}.fq-fr.r{right:var(--pad)}.fq-fr.c{left:50%;translate:-50% 0}
+.fq-fr.v1{background:#E4002B;color:#fff}.fq-fr.v2{background:#FFC83D;color:#0B2D63}.fq-fr.v3{background:#0B2D63;color:#FFC83D}.fq-fr.v4{background:#F1EDE2;color:#C8102E}
+@media (max-width:620px){.fq-fr{font-size:12.5px;padding:8px 12px;border-width:2px}.fq-fr.c{display:none}}
+@media (prefers-reduced-motion:reduce){.fq-fr{animation:none}}
+
 
 </style>
 </head>
@@ -1291,6 +1313,12 @@ html.fq .ribbon::before{top:0}html.fq .ribbon::after{bottom:0}
       </div>
     </div>
   </section>
+
+  <div class="fq-desfile" data-fq role="img" aria-label="La chiva del Tío Reex con los stickers de Fruti Reex desfilando por Quito">
+    <svg class="fq-ciudad" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path fill="#0E3170" d="M0 140 L90 118 L170 128 L260 92 L330 104 L420 58 L500 86 L560 74 L640 96 L720 70 L800 92 L890 52 L960 80 L1040 64 L1120 88 L1210 56 L1300 92 L1380 82 L1440 98 L1440 200 L0 200Z"/><path fill="currentColor" d="M0 200 V148 h36 V200Z M-2 148 L18 135 L38 148Z M36 200 V176 h27 V200Z M63 200 V167 h29 V200Z M92 200 V172 h42 V200Z M90 172 L113 161 L136 172Z M134 200 V176 h39 V200Z M132 176 L154 164 L175 176Z M173 200 V177 h39 V200Z M212 200 V148 h29 V200Z M210 148 L226 135 L243 148Z M241 200 V148 h44 V200Z M239 148 L263 136 L287 148Z M285 200 V177 h38 V200Z M323 200 V161 h27 V200Z M350 200 V165 h35 V200Z M348 165 L368 157 L387 165Z M385 200 V169 h44 V200Z M429 200 V173 h47 V200Z M427 173 L452 161 L478 173Z M476 200 V172 h46 V200Z M474 172 L499 160 L524 172Z M522 200 V176 h48 V200Z M570 200 V172 h45 V200Z M568 172 L592 160 L617 172Z M615 200 V154 h39 V200Z M613 154 L634 142 L656 154Z M654 200 V167 h40 V200Z M652 167 L674 153 L696 167Z M694 200 V156 h31 V200Z M725 200 V160 h28 V200Z M723 160 L739 149 L755 160Z M753 200 V168 h54 V200Z M807 200 V159 h35 V200Z M842 200 V162 h29 V200Z M840 162 L856 148 L873 162Z M871 200 V174 h36 V200Z M907 200 V177 h39 V200Z M946 200 V154 h28 V200Z M974 200 V150 h51 V200Z M1025 200 V156 h36 V200Z M1023 156 L1043 145 L1063 156Z M1061 200 V153 h44 V200Z M1059 153 L1083 139 L1107 153Z M1105 200 V148 h28 V200Z M1103 148 L1119 135 L1135 148Z M1133 200 V176 h47 V200Z M1131 176 L1156 163 L1182 176Z M1180 200 V158 h35 V200Z M1215 200 V152 h47 V200Z M1213 152 L1238 139 L1264 152Z M1262 200 V150 h38 V200Z M1300 200 V148 h26 V200Z M1298 148 L1313 139 L1328 148Z M1326 200 V175 h45 V200Z M1324 175 L1348 166 L1373 175Z M1371 200 V169 h50 V200Z M1369 169 L1396 160 L1423 169Z M1421 200 V166 h38 V200Z M970 200 V130 L1010 104 L1050 130 V200Z M953 200 V82 L964 47 L975 82 V200Z M962.8 47 v-12 h2.4 v12Z M958 39 h12 v2.4 h-12Z M1045 200 V82 L1056 47 L1067 82 V200Z M1054.8 47 v-12 h2.4 v12Z M1050 39 h12 v2.4 h-12Z M444 152 A26 26 0 0 1 496 152 V200 H444Z M468 126 v-14 h4 v14Z M542 160 A18 18 0 0 1 578 160 V200 H542Z M558 142 v-14 h4 v14Z M738 154 A22 22 0 0 1 782 154 V200 H738Z M758 132 v-14 h4 v14Z M632 170 V124 L640 98 L648 124 V170Z M638.8 98 v-12 h2.4 v12Z M634 90 h12 v2.4 h-12Z M90 200 Q190 104 300 200Z M190 116 l-7 22 h14Z M183 122 l-14 -6 l12 12Z M197 122 l14 -6 l-12 12Z M187 112 a3.5 3.5 0 1 0 7 0 a3.5 3.5 0 1 0 -7 0Z"/></svg>
+    <div class="fq-calle" aria-hidden="true"></div>
+    <div class="fq-va" aria-hidden="true"><img src="assets/fq-chiva.webp" width="1559" height="778" alt="" loading="lazy"><span class="globo">¡Súbanse a la chiva!</span></div>
+  </div>
 
   <div class="ribbon" aria-hidden="true"><div class="ribbon-track" id="ribbon"></div></div>
 
@@ -2094,6 +2122,29 @@ html.fq .ribbon::before{top:0}html.fq .ribbon::after{bottom:0}
     w.innerHTML = '<img src="' + ASSET(x[2]) + '" alt="" loading="lazy">';
     sec.appendChild(w);
   });
+
+
+  /* Fiestas de Quito: frases quiteñas pegadas en las secciones */
+  if (FQ) {
+    const FRASES = [
+      [".follow", "l", "¡Qué bestia, qué rico!", 1, -4], [".mani", "r", "¿Qué más, ve?", 2, 3],
+      ["#historia", "r", "¡De ley!", 3, 4], ["#historia", "c", "¡Quito, carita de Dios!", 4, -2],
+      ["#tio-rex", "l", "¡Simón, ñaño!", 1, -3], ["#menu", "l", "¡Achachay, qué frío!", 3, -4], ["#menu", "c", "¡Arrarray, qué rico!", 2, 2],
+      ["#toppings", "r", "¡Chuta, qué delicia!", 1, 3], ["#local", "r", "¡Elé, qué bonito!", 2, -3],
+      ["#familia", "r", "¡Chulla vida!", 4, 4], ["#familia", "c", "¡Ve, guambra!", 3, -2],
+      ["#visitanos", "l", "¡Ya mismo llego!", 2, -4], ["#clientes", "l", "¡Bacán, mi pana!", 1, 3], ["#clientes", "c", "¡Qué de lujo!", 4, -3],
+      ["#stickers", "r", "¡Que viva Quito!", 1, 4], ["#stickers", "l", "¡Viva la capital!", 3, -3], [".foot", "c", "¡Quito, luz de América!", 2, -2]
+    ];
+    FRASES.forEach((f, i) => {
+      const sec = document.querySelector(f[0]); if (!sec) return;
+      if (getComputedStyle(sec).position === "static") sec.style.position = "relative";
+      const corta = getComputedStyle(sec).overflow !== "visible";
+      const el = document.createElement("span");
+      el.className = "fq-fr " + f[1] + " v" + f[3] + (corta ? " dentro" : ""); el.setAttribute("aria-hidden", "true");
+      el.style.setProperty("--r", f[4] + "deg"); el.style.animationDelay = (-i * .6) + "s"; el.textContent = f[2];
+      sec.appendChild(el);
+    });
+  }
 
   /* Así se arma una malcriada: el video (fotos reales en secuencia) marca el paso activo */
   (function arma(){
