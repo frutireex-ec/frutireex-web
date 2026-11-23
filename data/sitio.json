@@ -1,55 +1,55 @@
 {
   "google": {
     "nota": 4.9,
-    "opiniones": 344,
+    "opiniones": 360,
     "data_id": "0x91d58b7485fdcf89:0x2e2cef1353b72836",
     "excluir": [
       "Freddy Navarrete"
     ],
     "resenas": [
       {
-        "autor": "Itati Cabezas",
+        "autor": "Jeysi Bedoya",
         "nota": 5,
-        "texto": "Me gustó muchísimo la atención no se diga super lindos, muchisimas gracias nos vemos en la proxima salida, hoy les visitamos desde la parroquia San José de Minas, muy rico 🦖🫶🏻…",
-        "fecha": "2026-11-04"
+        "texto": "Riquísimo visitamos al TÍO REEX y sabor exquisito Gozilla Pequeña riquísimo la atención ni se diga muy buena y el aseo igual Recomendadisismo✨✨💓",
+        "fecha": "2026-11-23"
       },
       {
-        "autor": "NAYELY GUACOLLANTE",
+        "autor": "Jennifer Navarro Coque",
         "nota": 5,
-        "texto": "Exelente,me encanta demasiado las fresas y es mi lugar favorito!🥳…",
-        "fecha": "2026-11-04"
+        "texto": "Todo agradable 📸💗muy Deli Deli 10/10",
+        "fecha": "2026-11-22"
       },
       {
-        "autor": "Juridia Espin M",
+        "autor": "Diana Guzman",
         "nota": 5,
-        "texto": "Super buenos un sabor nada empalagoso y los envíos súper bien empacados",
-        "fecha": "2026-11-04"
+        "texto": "Súper recomendado. El lugar muy bonito , la atención fue excelente , el sabor de las fresas, los toopings y el chocolate fue más que perfecto. Como sugerencia colocar un cambiador para bebés  (puede ser plegable y empotrado a la pared ) para no quitar espacio en el sanitario. Muchos éxitos y sigan adelante. ✨🙏😋",
+        "fecha": "2026-11-16"
       },
       {
-        "autor": "Maria Jose Lema",
+        "autor": "Ana Chango",
         "nota": 5,
-        "texto": "🍓 Desde el sur de Quito hasta Guayllabamba… ¡y sí, valió totalmente la pena! Las fresas de Frutireex son una delicia y el motivo perfecto para hacer una escapadita. ❤️ ¡Recomendadísimo para los amantes de las fresas!…",
-        "fecha": "2026-11-03"
+        "texto": "Lindo lugar para compartir  en familia y la atención muy buena",
+        "fecha": "2026-11-09"
       },
       {
-        "autor": "Alex Kvitko",
+        "autor": "Victoria Carrasco",
         "nota": 5,
-        "texto": "Hay lugares que se ganan el cariño de las personas por lo que ofrecen y por cómo las hacen sentir. Frutirex es uno de ellos. ¡Muchos éxitos y que sigan creciendo! ❤️",
-        "fecha": "2026-11-03"
+        "texto": "Un buen lugarr, muy recomendadoo la Gotzila estuvo buenasaaaaaaa 😉✨",
+        "fecha": "2026-11-09"
       },
       {
-        "autor": "Dalia Carrera",
+        "autor": "Josue Solorzano",
         "nota": 5,
-        "texto": "Me encantaron estaban muy ricas y la atención 10/10",
-        "fecha": "2026-11-03"
+        "texto": "Excelente servicio por parte del personal de Frutireex, y muy deliciosas 😋",
+        "fecha": "2026-11-09"
       }
     ],
-    "fuente": "Google Maps, más recientes (revisado el 6 de noviembre de 2026)",
-    "fecha": "2026-11-06"
+    "fuente": "Google Maps, más recientes (revisado el 23 de noviembre de 2026)",
+    "fecha": "2026-11-23"
   },
   "contador": {
     "servicio": "abacus.jasoncameron.dev/frutireex-com/visitas",
     "goatcounter": ""
   },
-  "revisado": "2026-11-22"
+  "revisado": "2026-11-23"
 }
